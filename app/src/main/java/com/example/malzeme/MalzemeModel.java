@@ -11,7 +11,6 @@ public class MalzemeModel {
 
     public MalzemeModel(int mno, String model) {
         this.mno = mno;
-
         this.model = model;
 
     }

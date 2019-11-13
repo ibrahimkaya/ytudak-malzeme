@@ -1,26 +1,25 @@
 package com.example.malzeme;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import com.example.malzeme.MalzemeModel.*;
 import java.util.ArrayList;
-import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.MyViewHolder> {
-
+    Context context;
     ArrayList<MalzemeModel> itemList;
     LayoutInflater inflater;
 
     public MyRecyclerAdapter (Context context, ArrayList<MalzemeModel> items){
         inflater = LayoutInflater.from(context);
         this.itemList = items;
-
+        this.context = context;
     }
 
     @Override
@@ -33,9 +32,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
-
         MalzemeModel selectedItem = itemList.get(position);
-        holder.setData(selectedItem, position);
+
+        holder.mnotv.setText(String.valueOf(selectedItem.mno));
+        holder.modeltv.setText(String.valueOf(selectedItem.model));
     }
 
     @Override
@@ -46,25 +46,15 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
 
 
 class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-//   public int mno;
-//   public String kategori;
-//   public String model;
-//   public String not;
 
     TextView mnotv , modeltv;
+
     public MyViewHolder(View itemView){
         super(itemView);
-        //bura patlar
         mnotv = (TextView) itemView.findViewById(R.id.mnoText);
         modeltv = (TextView) itemView.findViewById(R.id.modelText);
-        //checkbox seçmesi burada?
-
     }
 
-    public void setData(MalzemeModel selectedItem, int position){
-        this.mnotv.setText(selectedItem.mno);
-        this.modeltv.setText(selectedItem.model);
-    }
 
     @Override
     public void onClick(View v){
