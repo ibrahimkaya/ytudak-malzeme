@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">malzeme</string>
+    <string name="zimmetle">Zimmetle</string>
+    <string name="gelen_text">Malzemeci ismi</string>
+    <string name="malzeme_arama">MALZEME ARAMA</string>
+    <string name="ara">ARA!</string>
+    <string name="search_button">ARA</string>
+    <string name="onay">onay</string>
+    <string-array name="malzemeci">
+        <item>Malzemeci1</item>
+        <item>Malzemeci2</item>
+        <item>Malzemeci3</item>
+    </string-array>
+    <string-array name="kategori">
+        <item>Tam İp</item>
+        <item>Yarim ip</item>
+        <item>kask</item>
+        <item>kemer</item>
+        <item>atc</item>
+        <item>hms</item>
+        <item>kitli karabina</item>
+        <item>free karabina</item>
+        <item>perlon</item>
+        <item>teknik kazma</item>
+        <item>yürüyüş kazması</item>
+        <item>çadır</item>
+    </string-array>
+
+
+
+
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+
+    >
+    <TextView
+        android:id="@+id/mnoText"
+        android:text="ornekmno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
+        />
+    <TextView
+        android:id="@+id/modelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ornekmodel"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
+        app:layout_constraintLeft_toRightOf="@id/mnoText"
+        app:layout_constraintRight_toRightOf="@id/alCheckBox"
+    />
+
+    <CheckBox
+        android:id="@+id/alCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/modelText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
