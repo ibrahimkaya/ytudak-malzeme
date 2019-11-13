@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.MyViewHolder> {
@@ -56,9 +54,9 @@ class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListen
 
         itemView.setOnClickListener(this);
 
-        mnotv = (TextView) itemView.findViewById(R.id.mnoText);
-        modeltv = (TextView) itemView.findViewById(R.id.modelText);
-        nottv = (TextView) itemView.findViewById(R.id.notText);
+        mnotv = (TextView) itemView.findViewById(R.id.mnoText_zimmetal);
+        modeltv = (TextView) itemView.findViewById(R.id.teslim_tarihText);
+        nottv = (TextView) itemView.findViewById(R.id.teslimedenText);
 
 
     }

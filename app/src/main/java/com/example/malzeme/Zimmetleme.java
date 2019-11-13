@@ -4,12 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,7 +23,7 @@ public class Zimmetleme extends AppCompatActivity {
         Intent intent = getIntent();
         String malzemeciadi = intent.getStringExtra("malzemecino");
 
-        TextView myTextView = findViewById(R.id.textview);
+        TextView myTextView = findViewById(R.id.spinner_malzeme);
 
         myTextView.setText(malzemeciadi);
 

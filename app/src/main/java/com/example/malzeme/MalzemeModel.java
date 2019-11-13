@@ -20,34 +20,27 @@ public class MalzemeModel {
         ArrayList<MalzemeModel> malzemeList = new ArrayList<MalzemeModel>();
         //datayı internetten alıp burada basıcam
         //alttakiler örnek eklemeler
-        MalzemeModel temp = new MalzemeModel(11,"kazma","dasdasdasd");
+        MalzemeModel temp = new MalzemeModel(1,"kazma","dasdasdasd");
         malzemeList.add(temp);
 
-        MalzemeModel temp2 = new MalzemeModel(13,"krampon","dasdasdasd");
+        MalzemeModel temp2 = new MalzemeModel(2,"krampon","dasdasdasd");
         malzemeList.add(temp2);
 
-        MalzemeModel temp3 = new MalzemeModel(16,"petzlEkspres","dasdasdasd");
+        MalzemeModel temp3 = new MalzemeModel(3,"petzlEkspres","dasdasdasd");
         malzemeList.add(temp3);
 
-        MalzemeModel temp4 = new MalzemeModel(23,"deutercanta","dasdasdasd");
+        MalzemeModel temp4 = new MalzemeModel(4,"deutercanta","dasdasdasd");
         malzemeList.add(temp4);
 
-        MalzemeModel temp5 = new MalzemeModel(1,"lsakmdlkasdklşasdklasdkasd","dasdasdasd");
+        MalzemeModel temp5 = new MalzemeModel(5,"lsakmdlkasdklşasdklasdkasd","dasdasdasd");
         malzemeList.add(temp5);
 
-        MalzemeModel temp6 = new MalzemeModel(3,"bd cam","dasdasdasd");;
+        MalzemeModel temp6 = new MalzemeModel(6,"bd cam","dasdasdasd");;
         malzemeList.add(temp6);
 
-        MalzemeModel temp7 = new MalzemeModel(113,"cam 0.3 ","dasdasdasd");
+        MalzemeModel temp7 = new MalzemeModel(7,"cam 0.3 ","dasdasdasd");
         malzemeList.add(temp7);
-        malzemeList.add(temp7);
-        malzemeList.add(temp7);
-        malzemeList.add(temp7);
-        malzemeList.add(temp7);
-        malzemeList.add(temp7);
-        malzemeList.add(temp7);malzemeList.add(temp7);
-        malzemeList.add(temp7);
-        malzemeList.add(temp7);
+
 
 
 

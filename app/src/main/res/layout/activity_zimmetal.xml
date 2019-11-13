@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Zimmetleme">
+
+    <Spinner
+        android:id="@+id/spinner_malzeme"
+        android:layout_width="157dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:text="Zimmet AL"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintHorizontal_bias="0.653"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_arama"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        app:layout_constraintHorizontal_bias="0.134"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_malzeme" />
+
+    <Button
+        android:id="@+id/btn_arama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="itemSearchOnclick"
+        android:padding="16dp"
+        android:text="@string/search_button"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_malzeme" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_zimmetal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/onaylamaButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_arama" />
+
+    <Button
+        android:id="@+id/btn_onaylama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/onay"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:onClick="onayOnclick"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="118dp"
+        android:layout_height="32dp"
+        android:text="Malzemeci Seç"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="39dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
     tools:context=".Zimmetleme">
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/spinner_malzeme"
         android:text="@string/gelen_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview"
+        app:layout_constraintTop_toBottomOf="@id/spinner_malzeme"
         android:padding="16dp"
 
         />
@@ -37,7 +37,7 @@
         android:text="@string/search_button"
         android:padding="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview"
+        app:layout_constraintTop_toBottomOf="@id/spinner_malzeme"
 
         android:onClick="itemSearchOnclick"
         />
