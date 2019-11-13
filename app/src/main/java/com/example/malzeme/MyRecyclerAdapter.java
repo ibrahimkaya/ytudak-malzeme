@@ -47,11 +47,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
 
 
 class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+    boolean clicked = false;
 
     TextView mnotv , modeltv,nottv;
     public MyViewHolder(View itemView){
         super(itemView);
+
+
+        itemView.setOnClickListener(this);
 
         mnotv = (TextView) itemView.findViewById(R.id.mnoText);
         modeltv = (TextView) itemView.findViewById(R.id.modelText);
@@ -68,6 +71,21 @@ class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListen
 
     @Override
     public void onClick(View v){
+        Log.d("adapteronclicktiklandi","buradamalzemenolarınıalmayacalis");
+        if(!this.clicked ) {
+            v.setBackgroundResource(R.color.colorPrimary);
+            //kayıt edilecek şeyler için yeni bir model oluştur
+            //o modelin bir listini oluştur
+            //burada viewdeki bilgileri çekip o listeye ekle
+            //ikinci tıklanmada yani vazgeçişte o listeden o elemanı çıkar
+
+        }else{
+                v.setBackgroundResource(R.color.colorAccent);
+                Log.d("adapteronclicktiklandi", "tersi olmasi lazım");
+
+            }
+        this.clicked = !clicked;
+
 
     }
 
