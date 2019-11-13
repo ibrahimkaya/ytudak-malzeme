@@ -38,13 +38,16 @@ public class Zimmetleme extends AppCompatActivity {
         kategoriSpinner.setAdapter(adapterKategori);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setHasFixedSize(true);
 
-        MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, MalzemeModel.getData());
-        recyclerView.setAdapter(myRecyclerAdapter);
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, MalzemeModel.getData());
+        recyclerView.setAdapter(myRecyclerAdapter);
 
 
     }

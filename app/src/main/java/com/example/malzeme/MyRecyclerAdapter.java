@@ -1,6 +1,7 @@
 package com.example.malzeme;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,24 +47,23 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
 
 
 class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-//   public int mno;
-//   public String kategori;
-//   public String model;
-//   public String not;
 
-    TextView mnotv , modeltv;
+
+    TextView mnotv , modeltv,nottv;
     public MyViewHolder(View itemView){
         super(itemView);
-        //bura patlar
+
         mnotv = (TextView) itemView.findViewById(R.id.mnoText);
         modeltv = (TextView) itemView.findViewById(R.id.modelText);
-        //checkbox seçmesi burada?
+        nottv = (TextView) itemView.findViewById(R.id.notText);
+
 
     }
 
     public void setData(MalzemeModel selectedItem, int position){
-        this.mnotv.setText(selectedItem.mno);
-        this.modeltv.setText(selectedItem.model);
+        this.mnotv.setText(String.valueOf(selectedItem.mno));
+        this.modeltv.setText(String.valueOf(selectedItem.model));
+        this.nottv.setText(String.valueOf(selectedItem.not));
     }
 
     @Override
