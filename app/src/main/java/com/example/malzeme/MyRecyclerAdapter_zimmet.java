@@ -67,7 +67,7 @@ public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAd
                 //burada viewdeki bilgileri çekip o listeye ekle
                 //ikinci tıklanmada yani vazgeçişte o listeden o elemanı çıkar
             }else{
-                v.setBackgroundResource(R.color.colorAccent);
+                v.setBackgroundResource(R.color.colorWhite);
             }
             this.clicked = !clicked;
         }

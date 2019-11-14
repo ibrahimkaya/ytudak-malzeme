@@ -11,46 +11,46 @@
 
     >
     <TextView
-        android:id="@+id/mnoText_zimmetal"
-        android:text="ornekmno"
+        android:id="@+id/mNoZimmetVerTV"
+        android:text="@string/mno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/teslim_tarihText"
+        app:layout_constraintLeft_toRightOf="@id/zVerilenModelTV"
         android:padding="16dp"
         />
 
     <TextView
-        android:id="@+id/teslim_tarihText"
+        android:id="@+id/zVerilenModelTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="ornekmodel"
-        app:layout_constraintLeft_toRightOf="@id/mnoText_zimmetal"
-        app:layout_constraintRight_toRightOf="@id/teslimedenText"
-        app:layout_constraintStart_toEndOf="@+id/mnoText_zimmetal"
+        android:text="@string/model"
+        app:layout_constraintLeft_toRightOf="@id/mNoZimmetVerTV"
+        app:layout_constraintRight_toRightOf="@id/zVerilenNotTV"
+        app:layout_constraintStart_toEndOf="@+id/mNoZimmetVerTV"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/teslimedenText"
+        android:id="@+id/zVerilenNotTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="orneknot"
+        android:text="@string/not"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="16dp"
-        app:layout_constraintStart_toEndOf="@+id/teslim_tarihText"
-        app:layout_constraintLeft_toRightOf="@id/teslim_tarihText"
-        app:layout_constraintRight_toRightOf="@id/teslim_alCheckBox"
+        app:layout_constraintStart_toEndOf="@+id/zVerilenModelTV"
+        app:layout_constraintLeft_toRightOf="@id/zVerilenModelTV"
+        app:layout_constraintRight_toRightOf="@id/zVerChcBox"
         />
 
 
     <CheckBox
-        android:id="@+id/teslim_alCheckBox"
+        android:id="@+id/zVerChcBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/teslimedenText"
+        app:layout_constraintLeft_toRightOf="@id/zVerilenNotTV"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

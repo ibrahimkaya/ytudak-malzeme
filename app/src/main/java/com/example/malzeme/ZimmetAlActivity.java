@@ -1,17 +1,21 @@
 package com.example.malzeme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ZimmetAlActivity extends AppCompatActivity {
+import java.io.Serializable;
+import java.util.ArrayList;
 
+public class ZimmetAlActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Spinner spinner_malzemeci;
     @Override
@@ -36,13 +40,13 @@ public class ZimmetAlActivity extends AppCompatActivity {
         MyRecyclerAdapter_zimmet RecyclerAdapter = new MyRecyclerAdapter_zimmet(this, ZimmetAlModelActivity.getData());
         recyclerView.setAdapter(RecyclerAdapter);
 
-
     }
 
     public void itemSearchOnclick(View view) {
     }
 
     public void onayOnclick(View view) {
+
     }
 }
 

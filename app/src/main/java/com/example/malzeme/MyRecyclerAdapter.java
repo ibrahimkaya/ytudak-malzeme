@@ -11,23 +11,70 @@ import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.MyViewHolder> {
+public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.MyViewHolder> implements java.io.Serializable {
 
-    ArrayList<MalzemeModel> itemList;
+    static ArrayList<MalzemeModel> itemList;
+    static boolean clicked = false;
+    static ArrayList<SecilenItemler> secilen = new ArrayList<SecilenItemler>();
     LayoutInflater inflater;
-
 
     public MyRecyclerAdapter (Context context, ArrayList<MalzemeModel> items){
         inflater = LayoutInflater.from(context);
         this.itemList = items;
-
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+
         View view = inflater.inflate(R.layout.one_item_layout, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
+        final MyViewHolder holder = new MyViewHolder(view);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("adapteronclicktiklandi", "buradamalzemenolarınıalmayacalis");
+                if (!v.isSelected()) {
+                    v.setBackgroundResource(R.color.colorPrimary);
+                    Log.d("adapteronclicktiklandi", "yesil oldu arraye eklicem");
+                    String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
+                    String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
+                    String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
+                    secilen.add(new SecilenItemler(malzemeno, model, not));
+                    Log.e("position",String.valueOf(holder.getAdapterPosition()));
+                    Log.e("Arraye eklenen---->",malzemeno+" "+model+" "+not);
+                } else {
+                    v.setBackgroundResource(R.color.colorWhite);
+                    Log.d("adapteronclicktiklandi", "beyaz oldu");
+                    String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
+                    String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
+                    String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
+                    for (int i = 0; i < secilen.size(); i++) {
+                        if (malzemeno == secilen.get(i).mno.toString()) {
+                            secilen.remove(i);
+                            Log.e("Arrayden silinen---->",malzemeno+" "+model+" "+not);
+                        }
+                    }
+                }
+                v.setSelected(!v.isSelected());
+
+            }
+        });
+
         return holder;
+    }
+    public class SecilenItemler {
+        String mno;
+        String model;
+        String  not;
+        public SecilenItemler(String mno,String model,String not){
+            this.mno = mno;
+            this.model = model;
+            this.not = not;
+        }
+    }
+
+    public static ArrayList<SecilenItemler> getSecilen() {
+        return secilen;
     }
 
 
@@ -45,51 +92,55 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
 
 
 
-class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     boolean clicked = false;
 
-    TextView mnotv , modeltv,nottv;
-    public MyViewHolder(View itemView){
+    TextView mnotv, modeltv, nottv;
+
+    public MyViewHolder(View itemView) {
         super(itemView);
-
-
         itemView.setOnClickListener(this);
-
         mnotv = (TextView) itemView.findViewById(R.id.mNoZimmetVerTV);
         modeltv = (TextView) itemView.findViewById(R.id.zVerilenModelTV);
         nottv = (TextView) itemView.findViewById(R.id.zVerilenNotTV);
-
-
     }
 
-    public void setData(MalzemeModel selectedItem, int position){
+    public void setData(MalzemeModel selectedItem, int position) {
         this.mnotv.setText(String.valueOf(selectedItem.mno));
         this.modeltv.setText(String.valueOf(selectedItem.model));
         this.nottv.setText(String.valueOf(selectedItem.not));
     }
 
     @Override
-    public void onClick(View v){
-        Log.d("adapteronclicktiklandi","buradamalzemenolarınıalmayacalis");
-        if(!this.clicked ) {
+    public void onClick(View v) {
+/*
+        Log.d("adapteronclicktiklandi", "buradamalzemenolarınıalmayacalis");
+        if (!this.clicked) {
             v.setBackgroundResource(R.color.colorPrimary);
-            //kayıt edilecek şeyler için yeni bir model oluştur
-            //o modelin bir listini oluştur
-            //burada viewdeki bilgileri çekip o listeye ekle
-            //ikinci tıklanmada yani vazgeçişte o listeden o elemanı çıkar
-            Log.d("holderonclicklogu",this.modeltv.getText().toString() );
-
-
-        }else{
-                v.setBackgroundResource(R.color.colorWhite);
-
-                Log.d("adapteronclicktiklandi", "tersi olmasi lazım");
-
+            Log.d("adapteronclicktiklandi", "yesil oldu arraye eklicem");
+            String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
+            String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
+            String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
+            secilen.add(new SecilenItemler(malzemeno, model, not));
+            Log.e("position",String.valueOf(holder.getAdapterPosition()));
+            Log.e("Arraye eklenen---->",malzemeno+" "+model+" "+not);
+        } else {
+            v.setBackgroundResource(R.color.colorWhite);
+            Log.d("adapteronclicktiklandi", "beyaz oldu");
+            String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
+            String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
+            String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
+            for (int i = 0; i < secilen.size(); i++) {
+                if (malzemeno == secilen.get(i).mno.toString()) {
+                    secilen.remove(i);
+                    Log.e("Arrayden silinen---->",malzemeno+" "+model+" "+not);
+                }
             }
+        }
         this.clicked = !clicked;
-
-
+*/
+    }
     }
 
-}
+
 }
