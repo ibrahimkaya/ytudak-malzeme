@@ -18,7 +18,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
 
     static ArrayList<MalzemeModel> itemList;
     static boolean clicked = false;
-    public static ArrayList<SecilenItemler> secilen = new ArrayList<SecilenItemler>();
+    static ArrayList<SecilenItemler> secilen = new ArrayList<SecilenItemler>();
     LayoutInflater inflater;
 
     public MyRecyclerAdapter (Context context, ArrayList<MalzemeModel> items){

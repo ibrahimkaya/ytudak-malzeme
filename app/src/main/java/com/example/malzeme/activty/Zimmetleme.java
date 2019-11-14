@@ -44,6 +44,7 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetleme);
 
+
         Spinner kategoriSpinner = (Spinner) findViewById(R.id.kategori);
 
         ArrayAdapter<CharSequence> adapterKategori = ArrayAdapter.createFromResource(this, R.array.kategori, android.R.layout.simple_spinner_item);
