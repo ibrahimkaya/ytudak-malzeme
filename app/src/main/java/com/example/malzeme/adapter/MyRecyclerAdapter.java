@@ -1,4 +1,4 @@
-package com.example.malzeme;
+package com.example.malzeme.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,11 +11,14 @@ import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.malzeme.model.MalzemeModel;
+import com.example.malzeme.R;
+
 public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.MyViewHolder> implements java.io.Serializable {
 
     static ArrayList<MalzemeModel> itemList;
     static boolean clicked = false;
-    static ArrayList<SecilenItemler> secilen = new ArrayList<SecilenItemler>();
+    public static ArrayList<SecilenItemler> secilen = new ArrayList<SecilenItemler>();
     LayoutInflater inflater;
 
     public MyRecyclerAdapter (Context context, ArrayList<MalzemeModel> items){
@@ -63,9 +66,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
         return holder;
     }
     public class SecilenItemler {
-        String mno;
-        String model;
-        String  not;
+        public String mno;
+        public String model;
+        public String  not;
         public SecilenItemler(String mno,String model,String not){
             this.mno = mno;
             this.model = model;

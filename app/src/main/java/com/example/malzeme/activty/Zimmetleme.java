@@ -1,4 +1,4 @@
-package com.example.malzeme;
+package com.example.malzeme.activty;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.malzeme.R;
+import com.example.malzeme.activty.ZimmetleOnayActivity;
+import com.example.malzeme.adapter.MyRecyclerAdapter;
+import com.example.malzeme.model.MalzemeModel;
 
 import java.util.ArrayList;
 
