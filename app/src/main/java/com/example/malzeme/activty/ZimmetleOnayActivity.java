@@ -17,6 +17,9 @@ import java.util.ArrayList;
 public class ZimmetleOnayActivity extends AppCompatActivity {
     ListView list;
     Button btn_onay;
+
+    ArrayList<String> array;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +28,12 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         list = findViewById(R.id.secilen_listview);
-        ArrayList<String> array = intent.getStringArrayListExtra("onay_array");
-        for(int i=0; i<array.size(); i++){
-            System.out.println(array.get(i));
-        }
+         array = intent.getStringArrayListExtra("onay_array");
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, array);
         list.setAdapter(adapter);
+
+
 
 
         btn_onay.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +42,17 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        ArrayList<Integer> malzemeno = new ArrayList<>();
+
+        for(int i=0; i<array.size(); i++){
+            String parca[] = array.get(i).split(" ");
+            malzemeno.add(Integer.parseInt(parca[0]));
+        }
     }
 
 

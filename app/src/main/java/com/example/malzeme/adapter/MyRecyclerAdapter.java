@@ -80,6 +80,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
         return secilen;
     }
 
+    public static void setSecilen() {
+        secilen.clear();
+    }
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
