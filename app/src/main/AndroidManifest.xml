@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Zimmetleme"></activity>
-        <activity android:name=".ZimmetAlActivity"></activity>
+        <activity android:name=".ZimmetleOnayActivity"></activity>
+        <activity android:name=".Zimmetleme" />
+        <activity android:name=".ZimmetAlActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

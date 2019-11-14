@@ -23,7 +23,7 @@ public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAd
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = inflater.inflate(R.layout.one_item_layout, parent, false);
+        View view = inflater.inflate(R.layout.zimmetal_item_layout, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }

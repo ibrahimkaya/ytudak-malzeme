@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner mySpinner = (Spinner) findViewById(R.id.malzemeciSpinner);
         String malzemecino = mySpinner.getSelectedItem().toString();
-        Toast.makeText(getApplicationContext(),malzemecino,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),malzemecino,Toast.LENGTH_SHORT).show();
         intent.putExtra("malzemecino", malzemecino);
         startActivity(intent);
 

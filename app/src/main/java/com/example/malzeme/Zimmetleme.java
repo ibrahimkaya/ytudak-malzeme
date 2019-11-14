@@ -10,9 +10,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Zimmetleme extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class Zimmetleme extends AppCompatActivity implements java.io.Serializable{
+    MyRecyclerAdapter adapter_zimmetle;
     RecyclerView recyclerView;
 
     @Override
@@ -54,6 +57,20 @@ public class Zimmetleme extends AppCompatActivity {
     }
 
     public void onayOnclick(View view) {
+        ArrayList<MyRecyclerAdapter.SecilenItemler> array = adapter_zimmetle.getSecilen();
+        ArrayList<String> rows = new ArrayList<>();
+
+        if(array.size() == 0){
+            Toast.makeText(this,"Seçim Yapmadınız!",Toast.LENGTH_SHORT).show();
+        }else {
+            for(int i=0; i<array.size(); i++){
+                System.out.println("EKLENEN:-----  "+array.get(i).mno +" - "+array.get(i).model);
+                rows.add(array.get(i).mno +" - "+array.get(i).model);
+            }
+            Intent intent = new Intent(this, ZimmetleOnayActivity.class);
+            intent.putExtra("onay_array", rows);
+            startActivity(intent);
+        }
     }
 }
 

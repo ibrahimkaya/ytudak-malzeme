@@ -11,6 +11,7 @@
     <string name="not">not</string>
     <string name="teslim_eden">teslim eden</string>
     <string name="teslimalan">teslimalan</string>
+    <string name="onayla">Onayla</string>
     <string-array name="malzemeci">
         <item>Malzemeci1</item>
         <item>Malzemeci2</item>
@@ -30,8 +31,6 @@
         <item>yürüyüş kazması</item>
         <item>çadır</item>
     </string-array>
-
-
 
 
 </resources>
