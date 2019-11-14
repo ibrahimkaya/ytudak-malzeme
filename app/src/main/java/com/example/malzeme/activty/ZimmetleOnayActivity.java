@@ -1,4 +1,4 @@
-package com.example.malzeme;
+package com.example.malzeme.activty;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.malzeme.R;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,6 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     }
 
     void onaybutonOnClick(View v) {
-
+        Toast.makeText(this,"butona bastin!!",Toast.LENGTH_SHORT);
     }
 }

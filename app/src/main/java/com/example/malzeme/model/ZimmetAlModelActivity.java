@@ -1,4 +1,4 @@
-package com.example.malzeme;
+package com.example.malzeme.model;
 
 import java.util.ArrayList;
 

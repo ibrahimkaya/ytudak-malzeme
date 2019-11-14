@@ -1,4 +1,4 @@
-package com.example.malzeme;
+package com.example.malzeme.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.malzeme.R;
+import com.example.malzeme.model.ZimmetAlModelActivity;
 
 public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAdapter_zimmet.MyViewHolder> {
 

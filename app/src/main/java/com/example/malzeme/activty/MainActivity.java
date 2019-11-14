@@ -1,4 +1,4 @@
-package com.example.malzeme;
+package com.example.malzeme.activty;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.malzeme.R;
 
 public class MainActivity extends AppCompatActivity {
     Button zimmetal;
