@@ -16,6 +16,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter <MyRecyclerAdapter.M
     ArrayList<MalzemeModel> itemList;
     LayoutInflater inflater;
 
+
     public MyRecyclerAdapter (Context context, ArrayList<MalzemeModel> items){
         inflater = LayoutInflater.from(context);
         this.itemList = items;
@@ -54,9 +55,9 @@ class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListen
 
         itemView.setOnClickListener(this);
 
-        mnotv = (TextView) itemView.findViewById(R.id.mnoText_zimmetal);
-        modeltv = (TextView) itemView.findViewById(R.id.teslim_tarihText);
-        nottv = (TextView) itemView.findViewById(R.id.teslimedenText);
+        mnotv = (TextView) itemView.findViewById(R.id.mNoZimmetVerTV);
+        modeltv = (TextView) itemView.findViewById(R.id.zVerilenModelTV);
+        nottv = (TextView) itemView.findViewById(R.id.zVerilenNotTV);
 
 
     }
@@ -76,9 +77,12 @@ class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListen
             //o modelin bir listini oluştur
             //burada viewdeki bilgileri çekip o listeye ekle
             //ikinci tıklanmada yani vazgeçişte o listeden o elemanı çıkar
+            Log.d("holderonclicklogu",this.modeltv.getText().toString() );
+
 
         }else{
-                v.setBackgroundResource(R.color.colorAccent);
+                v.setBackgroundResource(R.color.colorWhite);
+
                 Log.d("adapteronclicktiklandi", "tersi olmasi lazım");
 
             }
