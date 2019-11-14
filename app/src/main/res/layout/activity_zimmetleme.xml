@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/spinner_malzeme"
-        android:text="@string/gelen_text"
+        android:text="YTUDAK AAK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
