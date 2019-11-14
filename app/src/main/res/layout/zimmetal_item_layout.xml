@@ -12,7 +12,7 @@
     >
     <TextView
         android:id="@+id/mnoText_zimmetal"
-        android:text="mno"
+        android:text="@string/mno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="teslimalan"
+        android:text="@string/teslimalan"
         app:layout_constraintLeft_toRightOf="@id/mnoText_zimmetal"
         app:layout_constraintRight_toRightOf="@id/teslimedenText"
         app:layout_constraintStart_toEndOf="@+id/mnoText_zimmetal"
@@ -36,7 +36,7 @@
         android:id="@+id/teslimedenText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="teslim eden"
+        android:text="@string/teslim_eden"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="16dp"
         app:layout_constraintStart_toEndOf="@+id/teslim_tarihText"
