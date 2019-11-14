@@ -27,7 +27,6 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetleme);
-
         Intent intent = getIntent();
         String malzemeciadi = intent.getStringExtra("malzemecino");
 

@@ -22,7 +22,6 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetle_onay);
         btn_onay = findViewById(R.id.buton_zimmetle_onay);
-
         Intent intent = getIntent();
         list = findViewById(R.id.secilen_listview);
         ArrayList<String> array = intent.getStringArrayListExtra("onay_array");
@@ -36,6 +35,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         btn_onay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<Integer> malzemeno = new ArrayList<>();
 
             }
         });
