@@ -1,9 +1,5 @@
 package com.example.malzeme.model;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.example.malzeme.activty.Zimmetleme;
-
 import java.util.ArrayList;
 
 //model kısmı ve constructor
