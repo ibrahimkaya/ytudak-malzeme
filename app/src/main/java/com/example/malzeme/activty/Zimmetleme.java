@@ -32,7 +32,7 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
     MyRecyclerAdapter adapter_zimmetle;
     RecyclerView recyclerView;
     public static ArrayList<MalzemeModel> gelenArray = new ArrayList<>();
-
+    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
     
 
     @Override
@@ -49,10 +49,10 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
 
         kategoriSpinner.setAdapter(adapterKategori);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView =  findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -132,7 +132,12 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         super.onRestart();
         adapter_zimmetle.setSecilen();
 
+        MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
+        recyclerView.setAdapter(myRecyclerAdapter);
     }
+
+
+
 }
 
 

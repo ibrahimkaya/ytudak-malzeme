@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.malzeme.R;
-import com.google.gson.JsonObject;
+//import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 
@@ -54,11 +54,11 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                     jsonArray = new JSONArray(new ArrayList<String>()); //json array içeriğini temizlemek için
                     for (int no : malzemeno) {
                         //json array oluşturulcak array içinde her bir malzeme için: [malzemeno, zimmet alan kişinin adı, veren malzemeci] json arrayi yapılarak gönderilecek
-                        JsonObject obj = new JsonObject();
-                        obj.addProperty("mno", String.valueOf(no));
-                        obj.addProperty("zimmetalan", alankisi.getText().toString());
-                        obj.addProperty("verenmalzemecino", malzemeci_spinner.getSelectedItem().toString());
-                        jsonArray.put(obj);
+                    //   JsonObject obj = new JsonObject();
+                    //   obj.addProperty("mno", String.valueOf(no));
+                    //   obj.addProperty("zimmetalan", alankisi.getText().toString());
+                    //   obj.addProperty("verenmalzemecino", malzemeci_spinner.getSelectedItem().toString());
+                    //   jsonArray.put(obj);
                     }
                     Log.e("jsonarray", jsonArray.toString());
                     //burada sunucuya request gonderilecek
