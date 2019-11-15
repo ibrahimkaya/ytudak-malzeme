@@ -21,9 +21,34 @@
         android:id="@+id/buton_zimmetle_onay"
         android:layout_width="145dp"
         android:layout_height="75dp"
-        android:layout_marginTop="440dp"
+        android:layout_marginTop="532dp"
         android:text="@string/onayla"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/alankisi_edt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="464dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/teslimalan"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/malzemeci_spinner"
+        android:entries="@array/malzemeci"
+        android:layout_width="135dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/secilen_listview"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
 </androidx.constraintlayout.widget.ConstraintLayout>
