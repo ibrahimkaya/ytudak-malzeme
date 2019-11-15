@@ -109,7 +109,6 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
         recyclerView.setAdapter(myRecyclerAdapter);
 
-
     }
 
     public void onayOnclick(View view) {
