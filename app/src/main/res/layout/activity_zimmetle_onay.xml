@@ -34,7 +34,8 @@
         android:layout_marginTop="464dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/teslimalan"
+        android:hint="@string/teslimalan"
+        android:text=""
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

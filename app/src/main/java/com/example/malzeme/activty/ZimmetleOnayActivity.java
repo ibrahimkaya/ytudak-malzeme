@@ -2,6 +2,7 @@ package com.example.malzeme.activty;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -34,7 +35,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetle_onay);
         malzemeci_spinner = findViewById(R.id.malzemeci_spinner);
-        hataToast = Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT);
+        hataToast = Toast.makeText(this, "Alan kişi adını giriniz!", Toast.LENGTH_SHORT);
         btn_onay = findViewById(R.id.buton_zimmetle_onay);
         alankisi = findViewById(R.id.alankisi_edt);
         Intent intent = getIntent();
@@ -47,15 +48,16 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         btn_onay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (alankisi.getText().equals("")) {
+                if (TextUtils.isEmpty(alankisi.getText().toString())) {
                     hataToast.show();
                 } else {
+                    jsonArray = new JSONArray(new ArrayList<String>()); //json array içeriğini temizlemek için
                     for (int no : malzemeno) {
                         //json array oluşturulcak array içinde her bir malzeme için: [malzemeno, zimmet alan kişinin adı, veren malzemeci] json arrayi yapılarak gönderilecek
                         JsonObject obj = new JsonObject();
-                        obj.addProperty("mno", no);
-                        obj.addProperty("verenmalzemecino", alankisi.getText().toString());
-                        obj.addProperty("mno", malzemeci_spinner.getSelectedItem().toString());
+                        obj.addProperty("mno", String.valueOf(no));
+                        obj.addProperty("zimmetalan", alankisi.getText().toString());
+                        obj.addProperty("verenmalzemecino", malzemeci_spinner.getSelectedItem().toString());
                         jsonArray.put(obj);
                     }
                     Log.e("jsonarray", jsonArray.toString());
