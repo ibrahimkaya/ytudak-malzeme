@@ -74,8 +74,5 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
             String parca[] = array.get(i).split(" ");
             malzemeno.add(Integer.parseInt(parca[0]));
         }
-
     }
-
-
 }

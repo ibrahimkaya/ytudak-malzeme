@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,7 +34,9 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
     RecyclerView recyclerView;
     public static ArrayList<MalzemeModel> gelenArray = new ArrayList<>();
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-    
+
+    ProgressBar fetchProgresBar ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,8 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-
-
+        fetchProgresBar =  findViewById(R.id.fetchSpinner);
+        fetchProgresBar.setVisibility(View.GONE);
     }
 
     public void fetch(){
@@ -68,47 +71,44 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d("oramakomaburamako","try1");
                         try{
                             gelenArray.clear();
-                            Log.d("oramakomaburamako","try");
+
                             for(int i=0;i<response.length();i++){
                                 JSONObject malzeme = response.getJSONObject(i);
+
                                 if(malzeme.getString("aktif").equals("1")){
                                     String tempMno = malzeme.getString("mno");
                                     String tempModel = malzeme.getString("model");
-                                    Log.d("oramakomaburamako",tempModel);
-                                    Log.d("oramakomaburamako",tempMno);
 
                                     gelenArray.add(new MalzemeModel(tempMno, tempModel, ""));
                                 }
                             }
-
                         }catch (JSONException e){
                             e.printStackTrace();
-                            Log.d("oramakomaburamako_hata", e.getMessage());
+                            Log.d("request Error", e.getMessage());
                         }
+                        fetchProgresBar.setVisibility(View.GONE);
                     }
                 },
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
-                        Log.d("oramakomaburamako_hata", error.getMessage());
+                        Log.d("request Error", error.getMessage());
                     }
                 }
         );
 
         // Add JsonArrayRequest to the RequestQueue
         queue.add(jsonArrayRequest);
-
     }
 
-
     public void itemSearchOnclick(View view) {
-        fetch();
+        fetchProgresBar.setVisibility(View.VISIBLE);
+
         MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
         recyclerView.setAdapter(myRecyclerAdapter);
-
+        fetch();
     }
 
     public void onayOnclick(View view) {
@@ -132,8 +132,16 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         super.onRestart();
         adapter_zimmetle.setSecilen();
 
+        //for deleting previous configurations
         MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
         recyclerView.setAdapter(myRecyclerAdapter);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        adapter_zimmetle.setSecilen();
+
     }
 
 
