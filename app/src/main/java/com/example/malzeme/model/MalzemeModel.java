@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MalzemeModel {
         public String mno ;
         public String not;
-        public String model = "bos";
+    public String model;
        static ArrayList<MalzemeModel> malzemeList = new ArrayList<MalzemeModel>();
 
     public MalzemeModel(String mno, String model,String not) {

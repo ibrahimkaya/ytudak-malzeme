@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">malzeme</string>
+    <string name="app_name">YTUDAK Malzeme</string>
     <string name="zimmetle">Zimmetle</string>
     <string name="gelen_text">Malzemeci ismi</string>
     <string name="malzeme_arama">MALZEME ARAMA</string>
@@ -12,6 +12,7 @@
     <string name="teslim_eden">teslim eden</string>
     <string name="teslimalan">teslimalan</string>
     <string name="onayla">Onayla</string>
+    <string name="malzemeci">Malzemeci</string>
     <string-array name="malzemeci">
         <item>Malzemeci1</item>
         <item>Malzemeci2</item>

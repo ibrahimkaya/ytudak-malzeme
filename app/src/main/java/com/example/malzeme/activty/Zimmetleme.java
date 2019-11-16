@@ -29,71 +29,66 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Zimmetleme extends AppCompatActivity implements java.io.Serializable{
-    MyRecyclerAdapter adapter_zimmetle;
-    RecyclerView recyclerView;
+public class Zimmetleme extends AppCompatActivity implements java.io.Serializable {
+    private MyRecyclerAdapter adapter_zimmetle;
+    private RecyclerView recyclerView;
     public static ArrayList<MalzemeModel> gelenArray = new ArrayList<>();
-    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+    private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
-    ProgressBar fetchProgresBar ;
+    ProgressBar fetchProgresBar;
 
-
+    public String base_url = "http://ufukglr.com/ytudak/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetleme);
 
-
         Spinner kategoriSpinner = (Spinner) findViewById(R.id.kategori);
-
         ArrayAdapter<CharSequence> adapterKategori = ArrayAdapter.createFromResource(this, R.array.kategori, android.R.layout.simple_spinner_item);
-
         adapterKategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         kategoriSpinner.setAdapter(adapterKategori);
 
-        recyclerView =  findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
-
 
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        fetchProgresBar =  findViewById(R.id.fetchSpinner);
+        fetchProgresBar = findViewById(R.id.fetchSpinner);
         fetchProgresBar.setVisibility(View.GONE);
     }
 
-    public void fetch(){
+    public void fetch() {
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://ufukglr.com/ytudak/malzemeler.php";
+        String url = base_url + "malzemeler.php";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try{
-                            gelenArray.clear();
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    gelenArray.clear();
 
-                            for(int i=0;i<response.length();i++){
-                                JSONObject malzeme = response.getJSONObject(i);
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject malzeme = response.getJSONObject(i);
 
-                                if(malzeme.getString("aktif").equals("1")){
-                                    String tempMno = malzeme.getString("mno");
-                                    String tempModel = malzeme.getString("model");
+                        if (malzeme.getString("aktif").equals("1")) {
+                            String tempMno = malzeme.getString("mno");
+                            String tempModel = malzeme.getString("model");
 
-                                    gelenArray.add(new MalzemeModel(tempMno, tempModel, ""));
-                                }
-                            }
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                            Log.d("request Error", e.getMessage());
+                            gelenArray.add(new MalzemeModel(tempMno, tempModel, ""));
                         }
-                        fetchProgresBar.setVisibility(View.GONE);
                     }
-                },
-                new Response.ErrorListener(){
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.d("request Error", e.getMessage());
+                }
+                fetchProgresBar.setVisibility(View.GONE);
+            }
+        },
+                new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error){
+                    public void onErrorResponse(VolleyError error) {
                         Log.d("request Error", error.getMessage());
                     }
                 }
@@ -115,11 +110,11 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         ArrayList<MyRecyclerAdapter.SecilenItemler> array = adapter_zimmetle.getSecilen();
         ArrayList<String> rows = new ArrayList<>();
 
-        if(array.size() == 0){
-            Toast.makeText(this,"Seçim Yapmadınız!",Toast.LENGTH_SHORT).show();
-        }else {
-            for(int i=0; i<array.size(); i++){
-                rows.add(array.get(i).mno +" "+array.get(i).model);
+        if (array.size() == 0) {
+            Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT).show();
+        } else {
+            for (int i = 0; i < array.size(); i++) {
+                rows.add(array.get(i).mno + " " + array.get(i).model);
             }
             Intent intent = new Intent(this, ZimmetleOnayActivity.class);
             intent.putExtra("onay_array", rows);
@@ -128,7 +123,7 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
     }
 
     @Override
-    public void onRestart(){
+    public void onRestart() {
         super.onRestart();
         adapter_zimmetle.setSecilen();
 
@@ -138,12 +133,11 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         adapter_zimmetle.setSecilen();
 
     }
-
 
 
 }
