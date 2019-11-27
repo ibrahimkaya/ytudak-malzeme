@@ -12,44 +12,39 @@
         android:layout_height="392dp"
         android:layout_marginTop="16dp"
         android:padding="16dp"
-        app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buton_zimmetle_onay"
-        android:layout_width="145dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="532dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/onayla"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <EditText
         android:id="@+id/alankisi_edt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="464dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/teslimalan"
         android:text=""
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/malzemeci_spinner"
+        app:layout_constraintBottom_toTopOf="@id/buton_zimmetle_onay" />
 
     <Spinner
         android:id="@+id/malzemeci_spinner"
         android:entries="@array/malzemeci"
-        android:layout_width="135dp"
-        android:layout_height="17dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/secilen_listview"
-        app:layout_constraintHorizontal_bias="0.481"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintTop_toBottomOf="@id/secilen_listview"
+        app:layout_constraintBottom_toTopOf="@id/alankisi_edt"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

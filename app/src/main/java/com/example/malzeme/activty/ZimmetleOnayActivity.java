@@ -14,6 +14,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.malzeme.R;
 import com.google.gson.JsonObject;
 
@@ -30,6 +38,9 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     JSONArray jsonArray = new JSONArray();
     ArrayList<String> array = new ArrayList<>(); // intent'ten gelen array
     ArrayList<Integer> malzemeno = new ArrayList<>(); // secilenlerin malzeme numaraları bu listenin icinde
+
+    static String postUrl = "http://ufukglr.com/ytudak/zimmetle.php/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +74,9 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                     }
                     Log.e("jsonarray", jsonArray.toString());
                     //burada sunucuya request gonderilecek
+                    postZimmetlenen();
+
+
                 }
             }
         });
@@ -75,5 +89,24 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
             String parca[] = array.get(i).split(" ");
             malzemeno.add(Integer.parseInt(parca[0]));
         }
+    }
+
+    public void postZimmetlenen(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, postUrl, jsonArray, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                //response handling
+                Log.d("postJson",response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error handling
+                Log.d("postJson", error.toString());
+            }
+        });
+
+        queue.add(jsonArrayRequest);
     }
 }
