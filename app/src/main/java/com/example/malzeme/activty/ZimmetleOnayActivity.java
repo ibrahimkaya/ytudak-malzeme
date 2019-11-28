@@ -19,14 +19,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.malzeme.R;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -36,7 +34,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     Spinner malzemeci_spinner;
     Button btn_onay;
     Toast hataToast;
-    JSONArray jsonArray = new JSONArray();
+    public static JSONArray jsonArray = new JSONArray();
     ArrayList<String> array = new ArrayList<>(); // intent'ten gelen array
     ArrayList<Integer> malzemeno = new ArrayList<>(); // secilenlerin malzeme numaraları bu listenin icinde
 
@@ -65,15 +63,22 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                     hataToast.show();
                 } else {
                     jsonArray = new JSONArray(new ArrayList<String>()); //json array içeriğini temizlemek için
-                    for (int no : malzemeno) {
-                        //json array oluşturulcak array içinde her bir malzeme için: [malzemeno, zimmet alan kişinin adı, veren malzemeci] json arrayi yapılarak gönderilecek
-                        JsonObject obj = new JsonObject();
-                        obj.addProperty("mno", String.valueOf(no));
-                        obj.addProperty("zimmetalan", alankisi.getText().toString());
-                        obj.addProperty("verenmalzemecino", malzemeci_spinner.getSelectedItem().toString());
+                    //for (int no : malzemeno) {
+                    //json array oluşturulcak array içinde her bir malzeme için: [malzemeno, zimmet alan kişinin adı, veren malzemeci] json arrayi yapılarak gönderilecek
+                    try {
+                        JSONObject obj = new JSONObject();
+                        obj.put("mno", malzemeno);
+                        obj.put("zimmetalan", alankisi.getText().toString());
+                        obj.put("verenmalzemecino", malzemeci_spinner.getSelectedItem().toString());
                         jsonArray.put(obj);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+
+
+                    // }
                     Log.e("jsonarray", jsonArray.toString());
+
                     //burada sunucuya request gonderilecek
                     postZimmetlenen();
 
@@ -91,30 +96,6 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
             malzemeno.add(Integer.parseInt(parca[0]));
         }
     }
-/*
-    public void postZimmetlenen(){
-        RequestQueue queue = Volley.newRequestQueue(this);
-        Log.d("postJson",jsonArray.toString());
-        String a = jsonArray.toString();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, postUrl,  new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                //response handling
-                Log.d("postJson",response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //error handling
-                Log.d("postJson", error.toString());
-            }
-        });
-        
-        //string requestte bi hash map gibi yapıda gövde yapman gerekiyor o kısmı tam bilmediğimden bıraktım
-        queue.add(stringRequest);
-    }
-    */
-
 
     public void postZimmetlenen(){
         RequestQueue queue = Volley.newRequestQueue(this);
