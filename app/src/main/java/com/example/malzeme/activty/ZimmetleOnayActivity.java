@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.malzeme.R;
 import com.google.gson.JsonObject;
@@ -90,14 +91,16 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
             malzemeno.add(Integer.parseInt(parca[0]));
         }
     }
-
+/*
     public void postZimmetlenen(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, postUrl, jsonArray, new Response.Listener<JSONArray>() {
+        Log.d("postJson",jsonArray.toString());
+        String a = jsonArray.toString();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, postUrl,  new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(String response) {
                 //response handling
-                Log.d("postJson",response.toString());
+                Log.d("postJson",response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -106,7 +109,31 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                 Log.d("postJson", error.toString());
             }
         });
+        
+        //string requestte bi hash map gibi yapıda gövde yapman gerekiyor o kısmı tam bilmediğimden bıraktım
+        queue.add(stringRequest);
+    }
+    */
+
+
+    public void postZimmetlenen(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        Log.d("postJson"," ilk "+jsonArray.toString());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, postUrl, jsonArray, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                //response handling
+                Log.d("postJson"," response" + response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error handling
+                Log.d("postJson"," error " + error.toString());
+            }
+        });
 
         queue.add(jsonArrayRequest);
     }
+
 }
