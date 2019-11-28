@@ -109,7 +109,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                 Log.d("postJson", error.toString());
             }
         });
-
+        
         //string requestte bi hash map gibi yapıda gövde yapman gerekiyor o kısmı tam bilmediğimden bıraktım
         queue.add(stringRequest);
     }
