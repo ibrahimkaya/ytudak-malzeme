@@ -84,6 +84,8 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
                     Log.d("request Error", e.getMessage());
                 }
                 fetchProgresBar.setVisibility(View.GONE);
+                //sunucudan cevaplar geldiğinde recycler wiev adapterini bağla
+                setMyAdapter();
             }
         },
                 new Response.ErrorListener() {
@@ -100,10 +102,12 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
 
     public void itemSearchOnclick(View view) {
         fetchProgresBar.setVisibility(View.VISIBLE);
+        fetch();
+    }
 
+    public void setMyAdapter(){
         MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
         recyclerView.setAdapter(myRecyclerAdapter);
-        fetch();
     }
 
     public void onayOnclick(View view) {
