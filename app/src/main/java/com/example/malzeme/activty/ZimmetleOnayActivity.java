@@ -97,6 +97,8 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 //response handling
                 Log.d("postJson"," response" + response.toString());
+                //gelen responsu bir sonraki onaylananlara ilet o klasorde tamam diyince ilk ekrana geri dönsün
+                startOnaylananlar(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -109,4 +111,11 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
+    protected void startOnaylananlar (JSONArray oynaylananlar){
+        Intent intent = new Intent(this, onaylananlarActivity.class);
+        //
+        intent.putExtra("oynaylananExtra",oynaylananlar.toString());
+        startActivity(intent);
+    }
 }
+
