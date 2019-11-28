@@ -64,7 +64,6 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                 } else {
                     jsonArray = new JSONArray(new ArrayList<String>()); //json array içeriğini temizlemek için
                     //for (int no : malzemeno) {
-                    //json array oluşturulcak array içinde her bir malzeme için: [malzemeno, zimmet alan kişinin adı, veren malzemeci] json arrayi yapılarak gönderilecek
                     try {
                         JSONObject obj = new JSONObject();
                         obj.put("mno", malzemeno);
@@ -74,14 +73,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
-                    // }
-                    Log.e("jsonarray", jsonArray.toString());
-
-                    //burada sunucuya request gonderilecek
                     postZimmetlenen();
-
 
                 }
             }
