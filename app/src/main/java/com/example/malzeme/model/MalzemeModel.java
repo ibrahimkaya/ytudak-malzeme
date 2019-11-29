@@ -13,22 +13,13 @@ public class MalzemeModel {
         this.mno = mno;
         this.model = model;
         this.not = not;
-
     }
 
     public static ArrayList<MalzemeModel> getData(){
-
-        //datayı internetten alıp burada basıcam
-        //alttakiler örnek eklemeler
-
-
         return  malzemeList;
     }
 
     public  void setData(ArrayList<MalzemeModel> list){
         this.malzemeList = list;
-
     }
-
-
 }

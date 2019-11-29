@@ -50,7 +50,6 @@ public class ZimmetAlOnayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 jsonArray = new JSONArray(new ArrayList<String>()); //json array içeriğini temizlemek için
 
-                //tarih alicam
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -65,8 +64,6 @@ public class ZimmetAlOnayActivity extends AppCompatActivity {
                 Log.e("jsonarray", jsonArray.toString());
                 //burada sunucuya request gonderilecek
             }
-
-
         });
     }
 
