@@ -134,6 +134,8 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         //for deleting previous configurations
         MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
         recyclerView.setAdapter(myRecyclerAdapter);
+        //alınan malzemeleri tekrar listelememesi için listeyi güncelle
+        fetch();
     }
 
     @Override
