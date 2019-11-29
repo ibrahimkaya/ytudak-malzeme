@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activty.onaylananlarActivity"></activity>
         <activity android:name=".activty.ZimmetAlOnayActivity" />
         <activity android:name=".activty.ZimmetleOnayActivity" />
         <activity android:name=".activty.Zimmetleme" />

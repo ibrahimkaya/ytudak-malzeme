@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,9 +35,12 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     Spinner malzemeci_spinner;
     Button btn_onay;
     Toast hataToast;
+    TextView onayDurum;
     public static JSONArray jsonArray = new JSONArray();
     ArrayList<String> array = new ArrayList<>(); // intent'ten gelen array
     ArrayList<Integer> malzemeno = new ArrayList<>(); // secilenlerin malzeme numaraları bu listenin icinde
+
+    ArrayList<String> succesRespons = new ArrayList<>();
 
     static String postUrl = "http://ufukglr.com/ytudak/zimmetle.php/";
 
@@ -45,6 +49,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetle_onay);
 
+        onayDurum = findViewById(R.id.responsTv);
         malzemeci_spinner = findViewById(R.id.malzemeci_spinner);
         hataToast = Toast.makeText(this, "Alan kişi adını giriniz!", Toast.LENGTH_SHORT);
         btn_onay = findViewById(R.id.buton_zimmetle_onay);
@@ -96,9 +101,8 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 //response handling
-                Log.d("postJson"," response" + response.toString());
-                //gelen responsu bir sonraki onaylananlara ilet o klasorde tamam diyince ilk ekrana geri dönsün
-                startOnaylananlar(response);
+
+                afterRespons(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -111,11 +115,36 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
-    protected void startOnaylananlar (JSONArray oynaylananlar){
-        Intent intent = new Intent(this, onaylananlarActivity.class);
-        //
-        intent.putExtra("oynaylananExtra",oynaylananlar.toString());
-        startActivity(intent);
+    protected void afterRespons(JSONArray res)  {
+        JSONObject temp;
+        //donen verileri arraya istediğim formatta alıyorum
+        try {
+            for (int i = 0; i < res.length(); i++) {
+                temp = res.getJSONObject(i);
+                if(temp.get("status").equals("success"))
+                succesRespons.add("istek başarılı  " + temp.get("mno").toString()+"  " + temp.get("verenmalzemecino").toString()+"  " + temp.get("zimmetalan").toString());
+            }
+        }catch (JSONException e){
+            Log.d("postJson","after Respons err"+ e.toString());
+        }
+
+        //yeni bilgilerimle beraber farklı layout ile listwiewi tekrar oluşuturuyorum
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.simple_list_item_for_response, android.R.id.text1, succesRespons);
+        list.setAdapter(adapter);
+
+        //ui güncelle
+        afterResponsUi();
+
     }
+
+    protected void afterResponsUi (){
+        //durum cubuğunu görünür ve diğer viewleri uidan kaldırmak
+        onayDurum.setVisibility(View.VISIBLE);
+        btn_onay.setVisibility(View.GONE);
+        alankisi.setVisibility(View.GONE);
+        malzemeci_spinner.setVisibility(View.GONE);
+    }
+
+
 }
 
