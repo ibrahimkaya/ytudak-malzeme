@@ -22,16 +22,34 @@
     <string-array name="kategori">
         <item>Tam İp</item>
         <item>Yarim ip</item>
-        <item>kask</item>
-        <item>kemer</item>
-        <item>atc</item>
-        <item>hms</item>
-        <item>kitli karabina</item>
-        <item>free karabina</item>
-        <item>perlon</item>
-        <item>teknik kazma</item>
-        <item>yürüyüş kazması</item>
-        <item>çadır</item>
+        <item>Top Rope</item>
+        <item>İp Çantası</item>
+        <item>Kemer</item>
+        <item>Kask</item>
+        <item>Emniyet Aleti</item>
+        <item>Ocak</item>
+        <item>Kış emniyet</item>
+        <item>Emniyet Aletleri</item>
+        <item>Çekiç</item>
+        <item>Cam</item>
+        <item>Takoz</item>
+        <item>Nutkey</item>
+        <item>Sikke</item>
+        <item>Karabina</item>
+        <item>Free Karabina</item>
+        <item>Hegza</item>
+        <item>Perlon</item>
+        <item>Kazma</item>
+        <item>Krampon</item>
+        <item>Aksesuar</item>
+        <item>Giyim</item>
+        <item>Tulum</item>
+        <item>Mat</item>
+        <item>Çanta</item>
+        <item>Çadır</item>
+        <item>Bivak</item>
+        <item>Elektroinik</item>
+        <item>Sağlık</item>
     </string-array>
 
 
