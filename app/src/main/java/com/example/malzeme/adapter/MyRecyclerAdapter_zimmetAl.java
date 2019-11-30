@@ -10,16 +10,16 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.malzeme.R;
-import com.example.malzeme.model.ZimmetAlModelActivity;
+import com.example.malzeme.model.ZimmetAlModel;
 
 import java.util.ArrayList;
 
-public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAdapter_zimmet.MyViewHolder> {
+public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecyclerAdapter_zimmetAl.MyViewHolder> {
 
-    ArrayList<ZimmetAlModelActivity> itemList;
-    LayoutInflater inflater;
-    static ArrayList<ZimmetALSecilenItemler> ZimmetAlinacakItemler = new ArrayList<>();
-    public MyRecyclerAdapter_zimmet (Context context, ArrayList<ZimmetAlModelActivity> items){
+    private ArrayList<ZimmetAlModel> itemList;
+    private LayoutInflater inflater;
+    private static ArrayList<ZimmetALSecilenItemler> ZimmetAlinacakItemler = new ArrayList<>();
+    public MyRecyclerAdapter_zimmetAl(Context context, ArrayList<ZimmetAlModel> items){
         inflater = LayoutInflater.from(context);
         this.itemList = items;
 
@@ -32,11 +32,11 @@ public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAd
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("zimmetal_view_onclik", "zimmetalma item tiklandi");
+
+                //eğer daha önce secili değilse seç arka planı değiştir ve arraya ekle
                 if (!v.isSelected()) {
                     v.setBackgroundResource(R.color.colorPrimary);
-                    Log.d("zimmetaladapterTiklandi", "yesil oldu arraye eklicem");
-                    //arraye ekleme islemi
+
                     String alindigi_tarih = String.valueOf(itemList.get(holder.getAdapterPosition()).teslim_tarihi);
                     String alan_kisi = String.valueOf(itemList.get(holder.getAdapterPosition()).teslim_edilen);
                     String mno = String.valueOf(itemList.get(holder.getAdapterPosition()).malzeme_no);
@@ -44,7 +44,7 @@ public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAd
 
                 } else {
                     v.setBackgroundResource(R.color.colorWhite);
-                    Log.d("zimmetaladapterTiklandi", "beyaz oldu");
+
                     // arrayden silinecek
                     String alindigi_tarih = String.valueOf(itemList.get(holder.getAdapterPosition()).teslim_tarihi);
                     String alan_kisi = String.valueOf(itemList.get(holder.getAdapterPosition()).teslim_edilen);
@@ -66,7 +66,7 @@ public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAd
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
 
-        ZimmetAlModelActivity selectedItem = itemList.get(position);
+        ZimmetAlModel selectedItem = itemList.get(position);
         holder.teslim_tarihi.setText(String.valueOf(selectedItem.teslim_tarihi));
         holder.teslimeden.setText(String.valueOf(selectedItem.teslim_edilen));
         holder.mno.setText(String.valueOf(selectedItem.malzeme_no));
@@ -83,7 +83,7 @@ public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAd
         public String alan_kisi;
         public String alindigi_tarih;
 
-        public ZimmetALSecilenItemler(String mno, String alan_kisi, String alindigi_tarih) {
+        ZimmetALSecilenItemler(String mno, String alan_kisi, String alindigi_tarih) {
             this.mno = mno;
             this.alan_kisi = alan_kisi;
             this.alindigi_tarih = alindigi_tarih;
@@ -99,7 +99,6 @@ public class MyRecyclerAdapter_zimmet extends RecyclerView.Adapter <MyRecyclerAd
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        boolean clicked = false;
 
         TextView mno ,teslimeden,teslim_tarihi;
         public MyViewHolder(View itemView){

@@ -25,7 +25,7 @@ public class ZimmetAlOnayActivity extends AppCompatActivity {
     ListView list;
     Spinner malzemeci_spinner;
     Button btn_onay;
-    ArrayList<String> array = new ArrayList<>(); // intent'ten gelen array
+    ArrayList<String> array = new ArrayList<>(); // intent'ten gelen arrayOnayList
     ArrayList<Integer> malzemeno = new ArrayList<>(); // secilenlerin malzeme numaraları bu listenin icinde
     JSONArray jsonArray = new JSONArray();
 
@@ -48,12 +48,12 @@ public class ZimmetAlOnayActivity extends AppCompatActivity {
         btn_onay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jsonArray = new JSONArray(new ArrayList<String>()); //json array içeriğini temizlemek için
+                jsonArray = new JSONArray(new ArrayList<String>()); //json arrayOnayList içeriğini temizlemek için
 
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-                // request icin json array olusturuyorum
+                // request icin json arrayOnayList olusturuyorum
                 for (int mno : malzemeno) {
                     JsonObject obj = new JsonObject();
                     obj.addProperty("mno", String.valueOf(mno));

@@ -20,8 +20,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.malzeme.R;
-import com.example.malzeme.adapter.MyRecyclerAdapter;
-import com.example.malzeme.model.MalzemeModel;
+import com.example.malzeme.adapter.MyRecyclerAdapter_Zver;
+import com.example.malzeme.model.ZimmetVerModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,13 +29,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Zimmetleme extends AppCompatActivity implements java.io.Serializable {
-    private MyRecyclerAdapter adapter_zimmetle;
+public class ZimmetlemeActivity extends AppCompatActivity implements java.io.Serializable {
+    private MyRecyclerAdapter_Zver adapter_zimmetle;
     private RecyclerView recyclerView;
-    public static ArrayList<MalzemeModel> gelenArray = new ArrayList<>();
-    private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-
     ProgressBar fetchProgresBar;
+
+    public static ArrayList<ZimmetVerModel> gelenArray = new ArrayList<>();
+    private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
     public String base_url = "http://ufukglr.com/ytudak/";
     @Override
@@ -43,7 +43,7 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetleme);
 
-        Spinner kategoriSpinner = (Spinner) findViewById(R.id.kategori);
+        Spinner kategoriSpinner = findViewById(R.id.kategori);
         ArrayAdapter<CharSequence> adapterKategori = ArrayAdapter.createFromResource(this, R.array.kategori, android.R.layout.simple_spinner_item);
         adapterKategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kategoriSpinner.setAdapter(adapterKategori);
@@ -58,7 +58,7 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
         fetchProgresBar.setVisibility(View.GONE);
     }
 
-    public void fetch() {
+    public void fetchItems() {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = base_url + "malzemeler.php";
@@ -76,7 +76,7 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
                             String tempMno = malzeme.getString("mno");
                             String tempModel = malzeme.getString("model");
 
-                            gelenArray.add(new MalzemeModel(tempMno, tempModel, ""));
+                            gelenArray.add(new ZimmetVerModel(tempMno, tempModel, ""));
                         }
                     }
                 } catch (JSONException e) {
@@ -102,16 +102,16 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
 
     public void itemSearchOnclick(View view) {
         fetchProgresBar.setVisibility(View.VISIBLE);
-        fetch();
+        fetchItems();
     }
 
     public void setMyAdapter(){
-        MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
-        recyclerView.setAdapter(myRecyclerAdapter);
+        MyRecyclerAdapter_Zver myRecyclerAdapterZver = new MyRecyclerAdapter_Zver(this, gelenArray);
+        recyclerView.setAdapter(myRecyclerAdapterZver);
     }
 
     public void onayOnclick(View view) {
-        ArrayList<MyRecyclerAdapter.SecilenItemler> array = adapter_zimmetle.getSecilen();
+        ArrayList<MyRecyclerAdapter_Zver.SecilenItemler> array = adapter_zimmetle.getSecilen();
         ArrayList<String> rows = new ArrayList<>();
 
         if (array.size() == 0) {
@@ -129,23 +129,20 @@ public class Zimmetleme extends AppCompatActivity implements java.io.Serializabl
     @Override
     public void onRestart() {
         super.onRestart();
-        adapter_zimmetle.setSecilen();
+        MyRecyclerAdapter_Zver.clearSecilen();
 
         //for deleting previous configurations
-        MyRecyclerAdapter myRecyclerAdapter = new MyRecyclerAdapter(this, gelenArray);
-        recyclerView.setAdapter(myRecyclerAdapter);
+        MyRecyclerAdapter_Zver myRecyclerAdapterZver = new MyRecyclerAdapter_Zver(this, gelenArray);
+        recyclerView.setAdapter(myRecyclerAdapterZver);
         //alınan malzemeleri tekrar listelememesi için listeyi güncelle
-        fetch();
+        fetchItems();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        adapter_zimmetle.setSecilen();
-
+        MyRecyclerAdapter_Zver.clearSecilen();
     }
-
-
 }
 
 

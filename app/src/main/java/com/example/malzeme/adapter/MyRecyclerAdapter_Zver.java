@@ -1,7 +1,6 @@
 package com.example.malzeme.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +9,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.malzeme.R;
-import com.example.malzeme.model.MalzemeModel;
+import com.example.malzeme.model.ZimmetVerModel;
 
 import java.util.ArrayList;
 
-public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder> implements java.io.Serializable {
+public class MyRecyclerAdapter_Zver extends RecyclerView.Adapter<MyRecyclerAdapter_Zver.MyViewHolder> implements java.io.Serializable {
 
-    static ArrayList<MalzemeModel> itemList;
-    static ArrayList<SecilenItemler> secilen = new ArrayList<SecilenItemler>();
-    LayoutInflater inflater;
+    private static ArrayList<ZimmetVerModel> itemList;
+    private static ArrayList<SecilenItemler> secilen = new ArrayList<>();
+    private LayoutInflater inflater;
 
-    public MyRecyclerAdapter(Context context, ArrayList<MalzemeModel> items) {
+    public MyRecyclerAdapter_Zver(Context context, ArrayList<ZimmetVerModel> items) {
         inflater = LayoutInflater.from(context);
-        this.itemList = items;
+        itemList = items;
     }
 
     @Override
@@ -34,26 +33,22 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("adapteronclicktiklandi", "buradamalzemenolarınıalmayacalis");
+                //secilmediyse sec arka planı yeşil yap ve secilen arrayina ekle
                 if (!v.isSelected()) {
                     v.setBackgroundResource(R.color.colorPrimary);
-                    Log.d("adapteronclicktiklandi", "yesil oldu arraye eklicem");
                     String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
                     String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
                     String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
                     secilen.add(new SecilenItemler(malzemeno, model, not));
-                    Log.e("position", String.valueOf(holder.getAdapterPosition()));
-                    Log.e("Arraye eklenen---->", malzemeno + " " + model + " " + not);
                 } else {
                     v.setBackgroundResource(R.color.colorWhite);
-                    Log.d("adapteronclicktiklandi", "beyaz oldu");
                     String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
                     String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
                     String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
+                    //tekrar tıklananların arka planını beyaz yap ve o malzeme malzeme noları uyuşan bilgiyi çıkar
                     for (int i = 0; i < secilen.size(); i++) {
-                        if (malzemeno == secilen.get(i).mno.toString()) {
+                        if (malzemeno.equals(secilen.get(i).mno)) {
                             secilen.remove(i);
-                            Log.e("Arrayden silinen---->", malzemeno + " " + model + " " + not);
                         }
                     }
                 }
@@ -81,14 +76,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         return secilen;
     }
 
-    public static void setSecilen() {
+    public static void clearSecilen() {
         secilen.clear();
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        MalzemeModel selectedItem = itemList.get(position);
+        ZimmetVerModel selectedItem = itemList.get(position);
         holder.setData(selectedItem, position);
     }
 
@@ -99,19 +94,17 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        boolean clicked = false;
-
         TextView mnotv, modeltv, nottv;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            mnotv = (TextView) itemView.findViewById(R.id.mNoZimmetVerTV);
-            modeltv = (TextView) itemView.findViewById(R.id.zVerilenModelTV);
-            nottv = (TextView) itemView.findViewById(R.id.zVerilenNotTV);
+            mnotv =  itemView.findViewById(R.id.mNoZimmetVerTV);
+            modeltv = itemView.findViewById(R.id.zVerilenModelTV);
+            nottv =  itemView.findViewById(R.id.zVerilenNotTV);
         }
 
-        public void setData(MalzemeModel selectedItem, int position) {
+        public void setData(ZimmetVerModel selectedItem, int position) {
             this.mnotv.setText(String.valueOf(selectedItem.mno));
             this.modeltv.setText(String.valueOf(selectedItem.model));
             this.nottv.setText(String.valueOf(selectedItem.not));
@@ -119,7 +112,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
         @Override
         public void onClick(View v) {
-
         }
     }
 }

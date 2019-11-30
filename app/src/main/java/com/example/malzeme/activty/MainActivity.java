@@ -27,22 +27,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
-
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        Log.d("bu", parent.getItemAtPosition(pos).toString());
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        Log.d("bu2", "secilmedi");
-    }
-
 
     public void zimmetOnClick(View view) {
-        Intent intent = new Intent(this, Zimmetleme.class);
-
+        Intent intent = new Intent(this, ZimmetlemeActivity.class);
         startActivity(intent);
     }
 }

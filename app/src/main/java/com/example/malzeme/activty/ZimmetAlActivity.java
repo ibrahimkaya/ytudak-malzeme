@@ -18,8 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.malzeme.R;
-import com.example.malzeme.adapter.MyRecyclerAdapter_zimmet;
-import com.example.malzeme.model.ZimmetAlModelActivity;
+import com.example.malzeme.adapter.MyRecyclerAdapter_zimmetAl;
+import com.example.malzeme.model.ZimmetAlModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,8 +29,8 @@ import java.util.ArrayList;
 
 public class ZimmetAlActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private MyRecyclerAdapter_zimmet adapter_al;
-    public static ArrayList<ZimmetAlModelActivity> gelenArray = new ArrayList<>();
+    private MyRecyclerAdapter_zimmetAl adapter_al;
+    public static ArrayList<ZimmetAlModel> gelenArray = new ArrayList<>();
     public String base_url = "http://ufukglr.com/ytudak/";
 
     ProgressBar fetchProgresBar;
@@ -50,12 +50,12 @@ public class ZimmetAlActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        MyRecyclerAdapter_zimmet RecyclerAdapter = new MyRecyclerAdapter_zimmet(this, ZimmetAlModelActivity.getData());
+        MyRecyclerAdapter_zimmetAl RecyclerAdapter = new MyRecyclerAdapter_zimmetAl(this, ZimmetAlModel.getData());
         recyclerView.setAdapter(RecyclerAdapter);
 
     }
 
-    public void fetch() {
+    public void fetchItems() {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = base_url + "zimmetal.php"; //server tarafi henuz yapilmadi
@@ -72,7 +72,7 @@ public class ZimmetAlActivity extends AppCompatActivity {
                             String tempMno = malzeme.getString("mno");
                             String tempModel = malzeme.getString("model");
 
-                            gelenArray.add(new ZimmetAlModelActivity(tempMno, tempModel, ""));
+                            gelenArray.add(new ZimmetAlModel(tempMno, tempModel, ""));
                         }
                     }
                 } catch (JSONException e) {
@@ -95,20 +95,20 @@ public class ZimmetAlActivity extends AppCompatActivity {
     }
     public void itemSearchOnclick(View view) {
         fetchProgresBar.setVisibility(View.VISIBLE);
-        MyRecyclerAdapter_zimmet myRecyclerAdapter_zimmet = new MyRecyclerAdapter_zimmet(this, gelenArray);
-        recyclerView.setAdapter(myRecyclerAdapter_zimmet);
-        fetch();
+        MyRecyclerAdapter_zimmetAl myRecyclerAdapter_zimmetAl = new MyRecyclerAdapter_zimmetAl(this, gelenArray);
+        recyclerView.setAdapter(myRecyclerAdapter_zimmetAl);
+        fetchItems();
     }
 
     public void onayOnclick(View view) {
-        ArrayList<MyRecyclerAdapter_zimmet.ZimmetALSecilenItemler> array = adapter_al.getZimmetAlinacakItemler();
+        ArrayList<MyRecyclerAdapter_zimmetAl.ZimmetALSecilenItemler> array = adapter_al.getZimmetAlinacakItemler();
         ArrayList<String> rows = new ArrayList<>();
         if (array.size() == 0) {
             Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < array.size(); i++) {
                 rows.add(array.get(i).mno + " " + array.get(i).alan_kisi + " " + array.get(i).alindigi_tarih);
-                Log.e("array", rows.get(i));
+                Log.e("arrayOnayList", rows.get(i));
             }
             Intent intent = new Intent(this, ZimmetAlOnayActivity.class);
             intent.putExtra("zimmet_al_onay_array", rows);
@@ -123,7 +123,7 @@ public class ZimmetAlActivity extends AppCompatActivity {
         adapter_al.setZimmetAlinacakItemler();
 
         //for deleting previous configurations
-        MyRecyclerAdapter_zimmet myRecyclerAdapter = new MyRecyclerAdapter_zimmet(this, gelenArray);
+        MyRecyclerAdapter_zimmetAl myRecyclerAdapter = new MyRecyclerAdapter_zimmetAl(this, gelenArray);
         recyclerView.setAdapter(myRecyclerAdapter);
     }
 

@@ -15,7 +15,7 @@
         <activity android:name=".activty.ZimmetAlOnayActivity"
             android:parentActivityName=".activty.MainActivity"/>
         <activity android:name=".activty.ZimmetleOnayActivity" />
-        <activity android:name=".activty.Zimmetleme" />
+        <activity android:name=".activty.ZimmetlemeActivity" />
         <activity android:name=".activty.ZimmetAlActivity" />
         <activity android:name=".activty.MainActivity">
             <intent-filter>
