@@ -28,15 +28,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class ZimmetlemeActivity extends AppCompatActivity implements java.io.Serializable {
+public class ZimmetlemeActivity extends AppCompatActivity implements Serializable, AdapterView.OnItemSelectedListener {
     private MyRecyclerAdapter_Zver adapter_zimmetle;
     private RecyclerView recyclerView;
     ProgressBar fetchProgresBar;
 
     public static ArrayList<ZimmetVerModel> gelenArray = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+    private int kategoriNo = 0;
+    JSONObject kNoJson;
+    JSONArray kNoJsonArray;
 
     public String base_url = "http://ufukglr.com/ytudak/";
     @Override
@@ -49,8 +54,7 @@ public abstract class ZimmetlemeActivity extends AppCompatActivity implements ja
         adapterKategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kategoriSpinner.setAdapter(adapterKategori);
 
-      //  kategoriSpinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
-
+        kategoriSpinner.setOnItemSelectedListener(this);
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -60,20 +64,16 @@ public abstract class ZimmetlemeActivity extends AppCompatActivity implements ja
 
         fetchProgresBar = findViewById(R.id.fetchSpinner);
         fetchProgresBar.setVisibility(View.GONE);
-    }
 
-  //  @Override
-  //  public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-  //      Log.d("kategoritiklama", String.valueOf(position));
-  //      Log.d("kategoritiklama", String.valueOf(id));
-  //  }
+
+    }
 
     public void fetchItems() {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = base_url + "malzemeler.php";
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest itemListRequest = new JsonArrayRequest(Request.Method.GET, url, kNoJsonArray, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
@@ -107,11 +107,17 @@ public abstract class ZimmetlemeActivity extends AppCompatActivity implements ja
         );
 
         // Add JsonArrayRequest to the RequestQueue
-        queue.add(jsonArrayRequest);
+        queue.add(itemListRequest);
     }
 
+    /*
+    fetch süresince progres için onu aktivite ediyorum
+    kategorilerdeki bilgileri setKategoriJson ile bir json arraya ekliyorum
+    bu bilgiler ile request atıyorum
+     */
     public void itemSearchOnclick(View view) {
         fetchProgresBar.setVisibility(View.VISIBLE);
+        setKategoriJson();
         fetchItems();
     }
 
@@ -153,7 +159,34 @@ public abstract class ZimmetlemeActivity extends AppCompatActivity implements ja
         super.onDestroy();
         MyRecyclerAdapter_Zver.clearSecilen();
     }
-}
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("kategorispinner", String.valueOf(position));
+        kategoriNo = position;
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+    /*
+    önce seçilen kategorimi alıyorum bir json objesine dönüştürüyorum
+    daha sonra bu objeyi bir jsonArray içine koyuyorum
+     */
+    void setKategoriJson(){
+        kNoJson = new JSONObject();
+        kNoJsonArray = new JSONArray();
+        try {
+            kNoJson.put("kategori",kategoriNo);
+            kNoJsonArray.put(kNoJson);
+
+            Log.d("kategorispinner", kNoJsonArray.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 
