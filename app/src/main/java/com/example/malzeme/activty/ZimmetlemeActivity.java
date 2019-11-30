@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -29,7 +30,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ZimmetlemeActivity extends AppCompatActivity implements java.io.Serializable {
+public abstract class ZimmetlemeActivity extends AppCompatActivity implements java.io.Serializable {
     private MyRecyclerAdapter_Zver adapter_zimmetle;
     private RecyclerView recyclerView;
     ProgressBar fetchProgresBar;
@@ -48,6 +49,9 @@ public class ZimmetlemeActivity extends AppCompatActivity implements java.io.Ser
         adapterKategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kategoriSpinner.setAdapter(adapterKategori);
 
+      //  kategoriSpinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+
+
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
 
@@ -57,6 +61,12 @@ public class ZimmetlemeActivity extends AppCompatActivity implements java.io.Ser
         fetchProgresBar = findViewById(R.id.fetchSpinner);
         fetchProgresBar.setVisibility(View.GONE);
     }
+
+  //  @Override
+  //  public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+  //      Log.d("kategoritiklama", String.valueOf(position));
+  //      Log.d("kategoritiklama", String.valueOf(id));
+  //  }
 
     public void fetchItems() {
 
