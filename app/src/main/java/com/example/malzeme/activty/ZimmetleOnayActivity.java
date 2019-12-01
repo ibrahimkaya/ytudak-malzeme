@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     Toast hataToast;
     TextView onayDurum;
     EditText onayNot;
+    ProgressBar onayProgresBar;
 
     public static JSONArray jsonArraySend = new JSONArray();
     ArrayList<String> arrayOnayList = new ArrayList<>(); // intent'ten gelen arrayOnayList
@@ -58,6 +60,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         alankisi = findViewById(R.id.alankisi_edt);
         listView = findViewById(R.id.secilen_listview);
         onayNot = findViewById(R.id.onayNotEditT);
+        onayProgresBar = findViewById(R.id.zOnayProgresBar);
 
         Intent intent = getIntent();
 
@@ -101,6 +104,9 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     public void postZimmetlenen(){
         RequestQueue queue = Volley.newRequestQueue(this);
         Log.d("onaydeneme", String.valueOf(jsonArraySend));
+
+        onayProgresBar.setVisibility(View.VISIBLE);
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, postUrl, jsonArraySend, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -121,6 +127,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     protected void afterRespons(JSONArray res)  {
         JSONObject temp;
         //donen verileri arraya istediğim formatta alıyorum
+        Log.d("onaydeneme","respons" + res);
         try {
             for (int i = 0; i < res.length(); i++) {
                 temp = res.getJSONObject(i);
@@ -140,6 +147,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     }
 
     protected void afterResponsUi (){
+        onayProgresBar.setVisibility(View.GONE);
         //durum cubuğunu görünür yapıp diğer viewleri uidan kaldırmak
         onayDurum.setVisibility(View.VISIBLE);
         btn_onay.setVisibility(View.GONE);
