@@ -36,6 +36,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     Button btn_onay;
     Toast hataToast;
     TextView onayDurum;
+    EditText onayNot;
 
     public static JSONArray jsonArraySend = new JSONArray();
     ArrayList<String> arrayOnayList = new ArrayList<>(); // intent'ten gelen arrayOnayList
@@ -56,6 +57,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         btn_onay = findViewById(R.id.buton_zimmetle_onay);
         alankisi = findViewById(R.id.alankisi_edt);
         listView = findViewById(R.id.secilen_listview);
+        onayNot = findViewById(R.id.onayNotEditT);
 
         Intent intent = getIntent();
 
@@ -76,6 +78,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
                         obj.put("mno", malzemeno);
                         obj.put("zimmetalan", alankisi.getText().toString());
                         obj.put("verenmalzemecino", malzemeci_spinner.getSelectedItem().toString());
+                        obj.put("zimmet_not",onayNot.getText().toString());
                         jsonArraySend.put(obj);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -97,7 +100,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
 
     public void postZimmetlenen(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        Log.d("postJson"," ilk "+ jsonArraySend.toString());
+        Log.d("onaydeneme", String.valueOf(jsonArraySend));
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, postUrl, jsonArraySend, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -142,6 +145,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         btn_onay.setVisibility(View.GONE);
         alankisi.setVisibility(View.GONE);
         malzemeci_spinner.setVisibility(View.GONE);
+        onayNot.setVisibility(View.GONE);
     }
 }
 

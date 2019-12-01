@@ -14,6 +14,7 @@
     <string name="onayla">Onayla</string>
     <string name="malzemeci">Malzemeci</string>
     <string name="durum_malzeme_no_malzemeci_alan_ki_i">Durum      malzeme   no   malzemeci   alan   kişi</string>
+    <string name="onay_not">NOT</string>
     <string-array name="malzemeci">
         <item>Malzemeci1</item>
         <item>Malzemeci2</item>

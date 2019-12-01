@@ -73,20 +73,21 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = base_url + "malzemeler.php";
 
-        JsonArrayRequest itemListRequest = new JsonArrayRequest(Request.Method.GET, url, kNoJsonArray, new Response.Listener<JSONArray>() {
+        JsonArrayRequest itemListRequest = new JsonArrayRequest(Request.Method.POST, url, kNoJsonArray, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
                     gelenArray.clear();
-
+                    Log.d("gelen", String.valueOf(response));
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject malzeme = response.getJSONObject(i);
 
                         if (malzeme.getString("aktif").equals("1")) {
                             String tempMno = malzeme.getString("mno");
                             String tempModel = malzeme.getString("model");
+                            String tempNot = malzeme.getString("malzeme_not");
 
-                            gelenArray.add(new ZimmetVerModel(tempMno, tempModel, ""));
+                            gelenArray.add(new ZimmetVerModel(tempMno, tempModel,tempNot));
                         }
                     }
                 } catch (JSONException e) {
@@ -105,7 +106,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
                     }
                 }
         );
-
         // Add JsonArrayRequest to the RequestQueue
         queue.add(itemListRequest);
     }
@@ -134,7 +134,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < array.size(); i++) {
-                rows.add(array.get(i).mno + " " + array.get(i).model);
+                rows.add(array.get(i).mno + " " + array.get(i).model + " " +array.get(i).not);
             }
             Intent intent = new Intent(this, ZimmetleOnayActivity.class);
             intent.putExtra("onay_array", rows);
@@ -164,7 +164,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Log.d("kategorispinner", String.valueOf(position));
         kategoriNo = position;
-
     }
 
     @Override
@@ -182,7 +181,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             kNoJson.put("kategori",kategoriNo);
             kNoJsonArray.put(kNoJson);
 
-            Log.d("kategorispinner", kNoJsonArray.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

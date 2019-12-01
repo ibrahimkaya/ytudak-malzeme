@@ -26,6 +26,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/responsTv" />
 
+    <EditText
+        android:id="@+id/onayNotEditT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/onay_not"
+        app:layout_constraintTop_toBottomOf="@id/secilen_listview"
+        />
+
     <Button
         android:id="@+id/buton_zimmetle_onay"
         android:layout_width="wrap_content"
@@ -42,19 +50,17 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/teslimalan"
-        android:text=""
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/malzemeci_spinner"
-        app:layout_constraintBottom_toTopOf="@id/buton_zimmetle_onay" />
-
+        app:layout_constraintTop_toBottomOf="@id/onayNotEditT"
+        app:layout_constraintBottom_toTopOf="@id/alankisi_edt"
+        app:layout_constraintBaseline_toBaselineOf="@id/malzemeci_spinner"/>
     <Spinner
         android:id="@+id/malzemeci_spinner"
         android:entries="@array/malzemeci"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/secilen_listview"
-        app:layout_constraintBottom_toTopOf="@id/alankisi_edt"/>
+        app:layout_constraintTop_toBottomOf="@id/onayNotEditT"
+        app:layout_constraintBottom_toTopOf="@id/buton_zimmetle_onay"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
