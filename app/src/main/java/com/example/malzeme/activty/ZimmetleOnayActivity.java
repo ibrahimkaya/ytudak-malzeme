@@ -131,8 +131,8 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         try {
             for (int i = 0; i < res.length(); i++) {
                 temp = res.getJSONObject(i);
-                if(temp.get("status").equals("success"))
-                succesRespons.add("istek başarılı  " + temp.get("mno").toString()+"  " + temp.get("verenmalzemecino").toString()+"  " + temp.get("zimmetalan").toString());
+                //Durum     | KATEGORİ  |   MODEL |  MALZEMECİ  |  ALAN KİŞİ |
+                succesRespons.add(temp.get("status").toString()+ " " + temp.get("kategori").toString()+"  " + temp.get("model") +" "+ temp.get("verenmalzemecino").toString()+"  " + temp.get("zimmetalan").toString());
             }
         }catch (JSONException e){
             Log.d("postJson","after Respons err"+ e.toString());
