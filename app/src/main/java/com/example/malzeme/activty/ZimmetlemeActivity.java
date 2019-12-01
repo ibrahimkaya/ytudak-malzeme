@@ -35,6 +35,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
     private MyRecyclerAdapter_Zver adapter_zimmetle;
     private RecyclerView recyclerView;
     ProgressBar fetchProgresBar;
+    Spinner kategoriSpinner;
 
     public static ArrayList<ZimmetVerModel> gelenArray = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -42,6 +43,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
     private int kategoriNo = 0;
     JSONObject kNoJson;
     JSONArray kNoJsonArray;
+    String kategoriName;
 
     public String base_url = "http://ufukglr.com/ytudak/";
     @Override
@@ -49,7 +51,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetleme);
 
-        Spinner kategoriSpinner = findViewById(R.id.kategori);
+        kategoriSpinner = findViewById(R.id.kategori);
         ArrayAdapter<CharSequence> adapterKategori = ArrayAdapter.createFromResource(this, R.array.kategori, android.R.layout.simple_spinner_item);
         adapterKategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kategoriSpinner.setAdapter(adapterKategori);
@@ -134,7 +136,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < array.size(); i++) {
-                rows.add(array.get(i).mno + " " + array.get(i).model + " " +array.get(i).not);
+                rows.add(array.get(i).mno + " " +" " + kategoriName + " " + array.get(i).model + " " +array.get(i).not);
             }
             Intent intent = new Intent(this, ZimmetleOnayActivity.class);
             intent.putExtra("onay_array", rows);
@@ -164,6 +166,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Log.d("kategorispinner", String.valueOf(position));
         kategoriNo = position;
+        kategoriName = kategoriSpinner.getSelectedItem().toString();
     }
 
     @Override
@@ -185,6 +188,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             e.printStackTrace();
         }
     }
+
 }
 
 

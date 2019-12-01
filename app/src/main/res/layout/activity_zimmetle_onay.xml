@@ -7,13 +7,14 @@
     tools:context=".activty.ZimmetleOnayActivity">
 
     <TextView
-        android:id="@+id/responsTv"
+        android:id="@+id/headerTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/durum_malzeme_no_malzemeci_alan_ki_i"
+        android:text="@string/zVer_before_res"
         android:padding="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"
         />
 
     <ListView
@@ -24,7 +25,7 @@
         android:padding="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/responsTv" />
+        app:layout_constraintTop_toTopOf="@id/headerTv" />
 
     <EditText
         android:id="@+id/onayNotEditT"

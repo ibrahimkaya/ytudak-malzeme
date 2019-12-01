@@ -13,7 +13,8 @@
     <string name="teslimalan">teslimalan</string>
     <string name="onayla">Onayla</string>
     <string name="malzemeci">Malzemeci</string>
-    <string name="durum_malzeme_no_malzemeci_alan_ki_i">Durum      malzeme   no   malzemeci   alan   kişi</string>
+    <string name="zVer_before_res"> MNO  | KATEGORİ |  MODEL | NOT</string>
+    <string name="zVer_after_res">Durum     | KATEGORİ  |   MODEL |  MALZEMECİ  |  ALAN KİŞİ | NOT </string>
     <string name="onay_not">NOT</string>
     <string-array name="malzemeci">
         <item>Malzemeci1</item>

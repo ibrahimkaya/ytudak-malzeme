@@ -36,7 +36,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     Spinner malzemeci_spinner;
     Button btn_onay;
     Toast hataToast;
-    TextView onayDurum;
+    TextView headerTv;
     EditText onayNot;
     ProgressBar onayProgresBar;
 
@@ -53,7 +53,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zimmetle_onay);
 
-        onayDurum = findViewById(R.id.responsTv);
+        headerTv = findViewById(R.id.headerTv);
         malzemeci_spinner = findViewById(R.id.malzemeci_spinner);
         hataToast = Toast.makeText(this, "Alan kişi adını giriniz!", Toast.LENGTH_SHORT);
         btn_onay = findViewById(R.id.buton_zimmetle_onay);
@@ -149,7 +149,7 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     protected void afterResponsUi (){
         onayProgresBar.setVisibility(View.GONE);
         //durum cubuğunu görünür yapıp diğer viewleri uidan kaldırmak
-        onayDurum.setVisibility(View.VISIBLE);
+        headerTv.setText(R.string.zVer_after_res);
         btn_onay.setVisibility(View.GONE);
         alankisi.setVisibility(View.GONE);
         malzemeci_spinner.setVisibility(View.GONE);
