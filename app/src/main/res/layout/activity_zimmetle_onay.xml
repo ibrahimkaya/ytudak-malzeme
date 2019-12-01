@@ -19,7 +19,7 @@
     <ListView
         android:id="@+id/secilen_listview"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:layout_marginTop="40dp"
         android:padding="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:text="@string/onay_not"
         app:layout_constraintTop_toBottomOf="@id/secilen_listview"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
     <Button
