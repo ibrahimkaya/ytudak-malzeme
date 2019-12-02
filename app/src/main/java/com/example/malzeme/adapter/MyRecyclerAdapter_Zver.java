@@ -1,6 +1,8 @@
 package com.example.malzeme.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,50 +14,31 @@ import com.example.malzeme.R;
 import com.example.malzeme.model.ZimmetVerModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class MyRecyclerAdapter_Zver extends RecyclerView.Adapter<MyRecyclerAdapter_Zver.MyViewHolder> implements java.io.Serializable {
 
     private static ArrayList<ZimmetVerModel> itemList;
     private static ArrayList<SecilenItemler> secilen = new ArrayList<>();
     private LayoutInflater inflater;
+    boolean[] indexOfSelectedItems;
 
     public MyRecyclerAdapter_Zver(Context context, ArrayList<ZimmetVerModel> items) {
         inflater = LayoutInflater.from(context);
         itemList = items;
+
+        //hangi itemin secildiğini tutmak için item listesi kadar false olan bir index arrayı oluşturuyorum
+        indexOfSelectedItems = new boolean[getItemCount()];
+        Arrays.fill(indexOfSelectedItems,false);
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
+        //view oluştur
         View view = inflater.inflate(R.layout.one_item_layout, parent, false);
-        final MyViewHolder holder = new MyViewHolder(view);
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //secilmediyse sec arka planı yeşil yap ve secilen arrayina ekle
-                if (!v.isSelected()) {
-                    v.setBackgroundResource(R.color.colorPrimary);
-                    String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
-                    String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
-                    String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
-                    secilen.add(new SecilenItemler(malzemeno, model, not));
-                } else {
-                    v.setBackgroundResource(R.color.colorWhite);
-                    String malzemeno = String.valueOf(itemList.get(holder.getAdapterPosition()).mno);
-                    String model = String.valueOf(itemList.get(holder.getAdapterPosition()).model);
-                    String not = String.valueOf(itemList.get(holder.getAdapterPosition()).not);
-                    //tekrar tıklananların arka planını beyaz yap ve o malzeme malzeme noları uyuşan bilgiyi çıkar
-                    for (int i = 0; i < secilen.size(); i++) {
-                        if (malzemeno.equals(secilen.get(i).mno)) {
-                            secilen.remove(i);
-                        }
-                    }
-                }
-                v.setSelected(!v.isSelected());
-
-            }
-        });
+        final MyViewHolder holder = new MyViewHolder(view,this);
 
         return holder;
     }
@@ -80,11 +63,23 @@ public class MyRecyclerAdapter_Zver extends RecyclerView.Adapter<MyRecyclerAdapt
         secilen.clear();
     }
 
+
+
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
+        //bu noktadaki holderi bağlarken itemlistten pozisyondaki itemi al
         ZimmetVerModel selectedItem = itemList.get(position);
+        //holdere set data diye bas
         holder.setData(selectedItem, position);
+
+        //viewlara datayı bağlarken (scroll yapıldığında veya yaratıldığında )
+        // kullanılacak viewi daha önce seçmiş isem arka planını yeşil seçmemiş isem beyaz yap
+        if(indexOfSelectedItems[holder.getAdapterPosition()]){
+            holder.itemView.setBackgroundColor(Color.GREEN);}
+        else {
+            holder.itemView.setBackgroundColor(Color.WHITE);
+        }
     }
 
     @Override
@@ -96,12 +91,14 @@ public class MyRecyclerAdapter_Zver extends RecyclerView.Adapter<MyRecyclerAdapt
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView mnotv, modeltv, nottv;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView, MyRecyclerAdapter_Zver adapter) {
             super(itemView);
-            itemView.setOnClickListener(this);
+
             mnotv =  itemView.findViewById(R.id.mNoZimmetVerTV);
             modeltv = itemView.findViewById(R.id.zVerilenModelTV);
             nottv =  itemView.findViewById(R.id.zVerilenNotTV);
+            //viweholderimin tuttuğu viewe onclick ekledim
+            itemView.setOnClickListener(this);
         }
 
         public void setData(ZimmetVerModel selectedItem, int position) {
@@ -112,6 +109,35 @@ public class MyRecyclerAdapter_Zver extends RecyclerView.Adapter<MyRecyclerAdapt
 
         @Override
         public void onClick(View v) {
+
+            //eğer seçilmemiş ise
+            if(!indexOfSelectedItems[getAdapterPosition()]){
+                //seç ve arka planını yeşil yap
+                indexOfSelectedItems[getAdapterPosition()] = true;
+                v.setBackgroundColor(Color.GREEN);
+
+                //item listesinden o itemi seçilen itemlere ekle
+                String malzemeno = String.valueOf(itemList.get(getAdapterPosition()).mno);
+                String model = String.valueOf(itemList.get(getAdapterPosition()).model);
+                String not = String.valueOf(itemList.get(getAdapterPosition()).not);
+                secilen.add(new SecilenItemler(malzemeno, model, not));
+
+            }else{
+                //seçilmiş ise seçimini kaldır ve arka planı düzel
+                indexOfSelectedItems[getAdapterPosition()] = false;
+                v.setBackgroundColor(Color.WHITE);
+
+                String malzemeno = String.valueOf(itemList.get(getAdapterPosition()).mno);
+                String model = String.valueOf(itemList.get(getAdapterPosition()).model);
+                String not = String.valueOf(itemList.get(getAdapterPosition()).not);
+                //tekrar tıklananların  malzeme noları uyuşan bilgiyi çıkar
+                for (int i = 0; i < secilen.size(); i++) {
+                    if (malzemeno.equals(secilen.get(i).mno)) {
+                        secilen.remove(i);
+                    }
+            }
         }
     }
-}
+
+
+}}
