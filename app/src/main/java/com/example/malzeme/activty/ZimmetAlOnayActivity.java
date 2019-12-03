@@ -41,7 +41,6 @@ public class ZimmetAlOnayActivity extends AppCompatActivity {
         Intent intent = getIntent();
         array = intent.getStringArrayListExtra("zimmet_al_onay_array");
 
-        Log.e("zimmetonay", String.valueOf(array.size()));
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, array);
         list.setAdapter(adapter);
 
@@ -61,7 +60,6 @@ public class ZimmetAlOnayActivity extends AppCompatActivity {
                     obj.addProperty("tarih", formatter.format(calendar.getTime()));
                     jsonArray.put(obj);
                 }
-                Log.e("jsonarray", jsonArray.toString());
                 //burada sunucuya request gonderilecek
             }
         });

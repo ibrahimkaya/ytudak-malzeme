@@ -80,7 +80,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             public void onResponse(JSONArray response) {
                 try {
                     gelenArray.clear();
-                    Log.d("gelen", String.valueOf(response));
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject malzeme = response.getJSONObject(i);
 
@@ -94,7 +93,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.d("request Error", e.getMessage());
                 }
                 fetchProgresBar.setVisibility(View.GONE);
                 //sunucudan cevaplar geldiğinde recycler wiev adapterini bağla
@@ -164,7 +162,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("kategorispinner", String.valueOf(position));
         kategoriNo = position;
         kategoriName = kategoriSpinner.getSelectedItem().toString();
     }
@@ -181,7 +178,8 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
         kNoJson = new JSONObject();
         kNoJsonArray = new JSONArray();
         try {
-            kNoJson.put("kategori",kategoriNo);
+            // +1 server kategori listelemesi için
+            kNoJson.put("kategori",kategoriNo+1);
             kNoJsonArray.put(kNoJson);
 
         } catch (JSONException e) {

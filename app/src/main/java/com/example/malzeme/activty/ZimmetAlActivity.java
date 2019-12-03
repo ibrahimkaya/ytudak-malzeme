@@ -108,11 +108,9 @@ public class ZimmetAlActivity extends AppCompatActivity {
         } else {
             for (int i = 0; i < array.size(); i++) {
                 rows.add(array.get(i).mno + " " + array.get(i).alan_kisi + " " + array.get(i).alindigi_tarih);
-                Log.e("arrayOnayList", rows.get(i));
             }
             Intent intent = new Intent(this, ZimmetAlOnayActivity.class);
             intent.putExtra("zimmet_al_onay_array", rows);
-            Log.e("zimmetalonayarray.size", String.valueOf(rows.size()));
             startActivity(intent);
         }
     }

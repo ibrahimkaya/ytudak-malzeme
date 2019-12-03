@@ -103,7 +103,6 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
 
     public void postZimmetlenen(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        Log.d("onaydeneme", String.valueOf(jsonArraySend));
 
         onayProgresBar.setVisibility(View.VISIBLE);
 
@@ -127,7 +126,6 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
     protected void afterRespons(JSONArray res)  {
         JSONObject temp;
         //donen verileri arraya istediğim formatta alıyorum
-        Log.d("onaydeneme","respons" + res);
         try {
             for (int i = 0; i < res.length(); i++) {
                 temp = res.getJSONObject(i);

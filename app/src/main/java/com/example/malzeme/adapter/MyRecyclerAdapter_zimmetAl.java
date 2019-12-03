@@ -52,7 +52,6 @@ public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecycler
                     for (int i = 0; i < ZimmetAlinacakItemler.size(); i++) {
                         if (mno == ZimmetAlinacakItemler.get(i).mno.toString()) {
                             ZimmetAlinacakItemler.remove(i);
-                            Log.e("Arrayden silinen---->", mno + " " + alan_kisi + " " + alindigi_tarih);
                         }
                     }
                 }
