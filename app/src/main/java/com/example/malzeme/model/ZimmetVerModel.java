@@ -7,12 +7,14 @@ public class ZimmetVerModel {
         public String mno ;
         public String not;
         public String model;
+        public String kategori;
         static ArrayList<ZimmetVerModel> malzemeList = new ArrayList<ZimmetVerModel>();
 
-    public ZimmetVerModel(String mno, String model, String not) {
+    public ZimmetVerModel(String mno, String model,String kategori, String not) {
         this.mno = mno;
         this.model = model;
         this.not = not;
+        this.kategori = kategori;
     }
 
     public static ArrayList<ZimmetVerModel> getData(){

@@ -47,11 +47,13 @@ public class MyRecyclerAdapter_Zver extends RecyclerView.Adapter<MyRecyclerAdapt
         public String mno;
         public String model;
         public String not;
+        public String kategori;
 
-        public SecilenItemler(String mno, String model, String not) {
+        public SecilenItemler(String mno, String model,String kategori, String not) {
             this.mno = mno;
             this.model = model;
             this.not = not;
+            this.kategori = kategori;
         }
     }
 
@@ -109,27 +111,27 @@ public class MyRecyclerAdapter_Zver extends RecyclerView.Adapter<MyRecyclerAdapt
 
         @Override
         public void onClick(View v) {
+            int currentAdapterPos = getAdapterPosition();
 
             //eğer seçilmemiş ise
-            if(!indexOfSelectedItems[getAdapterPosition()]){
+            if(!indexOfSelectedItems[currentAdapterPos]){
                 //seç ve arka planını yeşil yap
-                indexOfSelectedItems[getAdapterPosition()] = true;
+                indexOfSelectedItems[currentAdapterPos] = true;
                 v.setBackgroundColor(Color.GREEN);
 
                 //item listesinden o itemi seçilen itemlere ekle
-                String malzemeno = String.valueOf(itemList.get(getAdapterPosition()).mno);
-                String model = String.valueOf(itemList.get(getAdapterPosition()).model);
-                String not = String.valueOf(itemList.get(getAdapterPosition()).not);
-                secilen.add(new SecilenItemler(malzemeno, model, not));
+                String malzemeno = String.valueOf(itemList.get(currentAdapterPos).mno);
+                String model = String.valueOf(itemList.get(currentAdapterPos).model);
+                String not = String.valueOf(itemList.get(currentAdapterPos).not);
+                String kategori = String.valueOf(itemList.get(currentAdapterPos).kategori);
+                secilen.add(new SecilenItemler(malzemeno, model,kategori, not));
 
             }else{
                 //seçilmiş ise seçimini kaldır ve arka planı düzel
-                indexOfSelectedItems[getAdapterPosition()] = false;
+                indexOfSelectedItems[currentAdapterPos] = false;
                 v.setBackgroundColor(Color.WHITE);
 
-                String malzemeno = String.valueOf(itemList.get(getAdapterPosition()).mno);
-                String model = String.valueOf(itemList.get(getAdapterPosition()).model);
-                String not = String.valueOf(itemList.get(getAdapterPosition()).not);
+                String malzemeno = String.valueOf(itemList.get(currentAdapterPos).mno);
                 //tekrar tıklananların  malzeme noları uyuşan bilgiyi çıkar
                 for (int i = 0; i < secilen.size(); i++) {
                     if (malzemeno.equals(secilen.get(i).mno)) {

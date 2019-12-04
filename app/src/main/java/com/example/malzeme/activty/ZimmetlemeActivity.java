@@ -43,7 +43,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
     private int kategoriNo = 0;
     JSONObject kNoJson;
     JSONArray kNoJsonArray;
-    String kategoriName;
+
 
     public String base_url = "http://ufukglr.com/ytudak/";
     @Override
@@ -87,8 +87,9 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
                             String tempMno = malzeme.getString("mno");
                             String tempModel = malzeme.getString("model");
                             String tempNot = malzeme.getString("malzeme_not");
+                            String tempKategori = malzeme.getString("kategori_no");
 
-                            gelenArray.add(new ZimmetVerModel(tempMno, tempModel,tempNot));
+                            gelenArray.add(new ZimmetVerModel(tempMno, tempModel,tempKategori,tempNot));
                         }
                     }
                 } catch (JSONException e) {
@@ -102,7 +103,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("request Error", error.getMessage());
+                      //  Log.d("request Error", error.getMessage());
                     }
                 }
         );
@@ -134,7 +135,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < array.size(); i++) {
-                rows.add(array.get(i).mno + " " +" " + kategoriName + " " + array.get(i).model + " " +array.get(i).not);
+                rows.add(array.get(i).mno + " " +" " + array.get(i).kategori + " " + array.get(i).model + " " +array.get(i).not);
             }
             Intent intent = new Intent(this, ZimmetleOnayActivity.class);
             intent.putExtra("onay_array", rows);
@@ -163,7 +164,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         kategoriNo = position;
-        kategoriName = kategoriSpinner.getSelectedItem().toString();
     }
 
     @Override
