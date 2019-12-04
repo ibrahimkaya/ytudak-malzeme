@@ -10,61 +10,60 @@
         android:id="@+id/headerTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/zVer_before_res"
         android:padding="16dp"
-        android:textStyle="bold"
+        android:text="@string/zVer_before_res"
         android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/malzemeci_spinner"
+        app:layout_constraintBottom_toTopOf="@id/secilen_listview"/>
+
 
     <ListView
         android:id="@+id/secilen_listview"
         android:layout_width="wrap_content"
-        android:layout_height="180dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="0dp"
         android:padding="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/headerTv" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerTv"
+ />
 
     <EditText
         android:id="@+id/onayNotEditT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/onay_not"
-        app:layout_constraintTop_toBottomOf="@id/secilen_listview"
-
-        />
-
-    <Button
-        android:id="@+id/buton_zimmetle_onay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/onayla"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/malzemeci_spinner"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/alankisi_edt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/teslimalan"
+        android:inputType="textPersonName"
+        android:padding="16dp"
         app:layout_constraintTop_toBottomOf="@id/onayNotEditT"
-        app:layout_constraintBottom_toTopOf="@id/malzemeci_spinner"
-        android:padding="16dp"/>
-    <Spinner
-        android:id="@+id/malzemeci_spinner"
-        android:entries="@array/malzemeci"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/buton_zimmetle_onay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/onayNotEditT"
-        app:layout_constraintBottom_toTopOf="@id/buton_zimmetle_onay"
+        android:text="@string/onayla"
+        app:layout_constraintTop_toBottomOf="@id/alankisi_edt"
+        app:layout_constraintRight_toRightOf="parent"
+         />
+
+    <Spinner
+        android:id="@+id/malzemeci_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/malzemeci"
         android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/alankisi_edt"
+        app:layout_constraintLeft_toLeftOf="parent"
         />
 
     <ProgressBar
@@ -72,6 +71,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>
