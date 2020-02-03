@@ -6,27 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".activty.ZimmetlemeActivity">
 
+    <TextView
+        android:id="@+id/zimmetAAk"
+        android:text="YTUDAK AAK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
+        android:textColor="@color/colorPrimary"
+        />
+
     <EditText
         android:id="@+id/edt_arama"
-        android:layout_width="292dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="16dp"
+        android:hint="@string/malzemenin_zimmetli_oldugu_kisi_ismi"
         app:layout_constraintHorizontal_bias="0.134"
-
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="105dp" />
+        app:layout_constraintRight_toRightOf="@id/z_al_button_ara"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/zimmetAAk" />
 
     <Button
-        android:id="@+id/btn_arama"
+        android:id="@+id/z_al_button_ara"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="itemSearchOnclick"
         android:padding="16dp"
         android:text="@string/search_button"
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/edt_arama"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="101dp" />
+        app:layout_constraintTop_toBottomOf="@id/zimmetAAk" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_zimmetal"
@@ -34,11 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/onaylamaButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_arama" />
+        app:layout_constraintTop_toBottomOf="@id/z_al_button_ara" />
 
     <Button
         android:id="@+id/btn_onaylama"
@@ -52,10 +65,13 @@
         />
 
     <ProgressBar
-        android:id="@+id/fetchSpinner"
+        android:id="@+id/fetchSpinner_zimmetver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,47 +11,57 @@
 
     >
     <TextView
-        android:id="@+id/mnoText_zimmetal"
-        android:text="@string/mno"
+        android:id="@+id/zal_adi"
+        android:text="@string/isim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/teslim_tarihText"
+        app:layout_constraintLeft_toRightOf="@id/zal_kategori"
         android:padding="16dp"
         />
 
     <TextView
-        android:id="@+id/teslim_tarihText"
+        android:id="@+id/zal_kategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="@string/teslimalan"
-        app:layout_constraintLeft_toRightOf="@id/mnoText_zimmetal"
-        app:layout_constraintRight_toRightOf="@id/teslimedenText"
-        app:layout_constraintStart_toEndOf="@+id/mnoText_zimmetal"
+        android:text="@string/kategori"
+        app:layout_constraintLeft_toRightOf="@id/zal_adi"
+        app:layout_constraintRight_toRightOf="@id/zal_model"
+        app:layout_constraintStart_toEndOf="@+id/zal_adi"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/teslimedenText"
+        android:id="@+id/zal_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/teslim_eden"
+        android:text="@string/model"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="16dp"
-        app:layout_constraintStart_toEndOf="@+id/teslim_tarihText"
-        app:layout_constraintLeft_toRightOf="@id/teslim_tarihText"
-        app:layout_constraintRight_toRightOf="@id/teslim_alCheckBox"
+        app:layout_constraintStart_toEndOf="@+id/zal_kategori"
+        app:layout_constraintLeft_toRightOf="@id/zal_kategori"
+        app:layout_constraintRight_toRightOf="parent"
         />
-
-
-    <CheckBox
-        android:id="@+id/teslim_alCheckBox"
+    <TextView
+        android:id="@+id/zal_tarih"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/teslimedenText"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="16dp"
+        android:text="@string/tarih"
+        app:layout_constraintTop_toBottomOf="@id/zal_adi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <TextView
+        android:id="@+id/zal_zimmet_not"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zimmetleme_notu"
+        android:padding="16dp"
+        app:layout_constraintLeft_toRightOf="@id/zal_tarih"
+        app:layout_constraintTop_toBottomOf="@id/zal_adi"
+        />
+    
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,12 @@
     <string name="zVer_before_res"> MNO  | KATEGORİ |  MODEL | NOT</string>
     <string name="zVer_after_res">Durum     | KATEGORİ  |   MODEL |  MALZEMECİ  |  ALAN KİŞİ  </string>
     <string name="onay_not">NOT</string>
+    <string name="malzemenin_zimmetli_oldugu_kisi_ismi">malzemenin zimmetli oldugu kisi ismi</string>
+    <string name="isim">isim</string>
+    <string name="kategori">kategori</string>
+    <string name="model">model</string>
+    <string name="tarih">tarih</string>
+    <string name="zimmetleme_notu">zimmetleme notu</string>
     <string-array name="malzemeci">
         <item>Malzemeci1</item>
         <item>Malzemeci2</item>
