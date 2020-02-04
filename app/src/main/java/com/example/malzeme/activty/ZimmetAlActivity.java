@@ -135,7 +135,7 @@ public class ZimmetAlActivity extends AppCompatActivity {
                   rows.add(array.get(i).mno +" " + array.get(i).zimmetalan + " " + array.get(i).kategori
                           + " " +array.get(i).model + " " + array.get(i).zimmet_alinma_tarih + " " + array.get(i).zimmet_not + " " + array.get(i).malzemecino);
             }
-            Intent intent = new Intent(this, ZimmetleOnayActivity.class);
+            Intent intent = new Intent(this, ZimmetAlOnayActivity.class);
             intent.putExtra("zimmetal_onay", rows);
             startActivity(intent);
         }
