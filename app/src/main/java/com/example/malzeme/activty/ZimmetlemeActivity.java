@@ -135,7 +135,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < array.size(); i++) {
-                rows.add(array.get(i).mno + " " +" " + array.get(i).kategori + " " + array.get(i).model + " " +array.get(i).not);
+                rows.add(array.get(i).mno + " " + array.get(i).kategori + " " + array.get(i).model + " " +array.get(i).not);
             }
             Intent intent = new Intent(this, ZimmetleOnayActivity.class);
             intent.putExtra("onay_array", rows);
