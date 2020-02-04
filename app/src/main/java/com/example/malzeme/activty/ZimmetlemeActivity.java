@@ -78,6 +78,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
         JsonArrayRequest itemListRequest = new JsonArrayRequest(Request.Method.POST, url, kNoJsonArray, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                Log.d("onResponstakidurum",response.toString());
                 try {
                     gelenArray.clear();
                     for (int i = 0; i < response.length(); i++) {
@@ -108,6 +109,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
                 }
         );
         // Add JsonArrayRequest to the RequestQueue
+        Log.d("onResponstakidurum","++request++" + String.valueOf(kNoJson));
         queue.add(itemListRequest);
     }
 
@@ -135,7 +137,7 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
             Toast.makeText(this, "Seçim Yapmadınız!", Toast.LENGTH_SHORT).show();
         } else {
             for (int i = 0; i < array.size(); i++) {
-                rows.add(array.get(i).mno + " " +" " + array.get(i).kategori + " " + array.get(i).model + " " +array.get(i).not);
+                rows.add(array.get(i).mno +" " + array.get(i).kategori + " " + array.get(i).model + " " +array.get(i).not);
             }
             Intent intent = new Intent(this, ZimmetleOnayActivity.class);
             intent.putExtra("onay_array", rows);
@@ -151,7 +153,6 @@ public class ZimmetlemeActivity extends AppCompatActivity implements Serializabl
         //for deleting previous configurations
         MyRecyclerAdapter_Zver myRecyclerAdapterZver = new MyRecyclerAdapter_Zver(this, gelenArray);
         recyclerView.setAdapter(myRecyclerAdapterZver);
-        //alınan malzemeleri tekrar listelememesi için listeyi güncelle
         fetchItems();
     }
 
