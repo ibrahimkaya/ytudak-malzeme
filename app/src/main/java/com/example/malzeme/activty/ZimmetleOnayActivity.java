@@ -154,4 +154,3 @@ public class ZimmetleOnayActivity extends AppCompatActivity {
         onayNot.setVisibility(View.GONE);
     }
 }
-
