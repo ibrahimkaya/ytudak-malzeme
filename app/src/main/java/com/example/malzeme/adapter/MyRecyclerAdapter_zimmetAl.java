@@ -10,21 +10,20 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.malzeme.R;
-import com.example.malzeme.model.ZimmetAlModel;
-import com.example.malzeme.model.ZimmetVerModel;
+import com.example.malzeme.activty.ZimmetAlActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecyclerAdapter_zimmetAl.MyViewHolder> {
 
-    private ArrayList<SecilenItemler> itemList;
-    private static ArrayList<SecilenItemler> secilen = new ArrayList<>();
+    private ArrayList<ZimmetAlActivity.GelenRequestModel> itemList;
+    private static ArrayList<ZimmetAlActivity.GelenRequestModel> secilen = new ArrayList<>();
     private LayoutInflater inflater;
     boolean[] indexOfSelectedItems;
 
 
-    public static ArrayList<MyRecyclerAdapter_zimmetAl.SecilenItemler> getSecilen() {
+    public static ArrayList<ZimmetAlActivity.GelenRequestModel> getSecilen() {
         return secilen;
     }
 
@@ -33,7 +32,7 @@ public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecycler
     }
 
 
-    public MyRecyclerAdapter_zimmetAl(Context context, ArrayList<SecilenItemler> items) {
+    public MyRecyclerAdapter_zimmetAl(Context context, ArrayList<ZimmetAlActivity.GelenRequestModel> items) {
         inflater = LayoutInflater.from(context);
         this.itemList = items;
 
@@ -48,29 +47,12 @@ public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecycler
         return holder;
     }
 
-    private class SecilenItemler {
-        public String isim;
-        public String mno;
-        public String model;
-        public String not;
-        public String kategori;
-        public String tarih;
-
-        public SecilenItemler(String isim, String mno, String model, String kategori, String not, String tarih) {
-            this.isim = isim;
-            this.mno = mno;
-            this.model = model;
-            this.not = not;
-            this.kategori = kategori;
-            this.tarih = tarih;
-        }
-    }
 
 
     @Override
     public void onBindViewHolder(MyRecyclerAdapter_zimmetAl.MyViewHolder holder, int position) {
         //bu noktadaki holderi bağlarken itemlistten pozisyondaki itemi al
-        SecilenItemler selectedItem = itemList.get(position);
+        ZimmetAlActivity.GelenRequestModel selectedItem = itemList.get(position);
         //holdere set data diye bas
         holder.setData(selectedItem, position);
 
@@ -90,7 +72,7 @@ public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecycler
 
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView isimtv, mnotv, modeltv, nottv, kategoritv, tarihtv;
+        TextView isimtv, mnotv, modeltv, nottv, kategoritv, tarihtv, malzemecinotv;
 
         public MyViewHolder(View itemView, MyRecyclerAdapter_zimmetAl adapter) {
             super(itemView);
@@ -101,18 +83,20 @@ public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecycler
             isimtv = itemView.findViewById(R.id.zal_adi);
             kategoritv = itemView.findViewById(R.id.zal_kategori);
             tarihtv = itemView.findViewById(R.id.zal_tarih);
+            malzemecinotv = itemView.findViewById(R.id.zal_malzemencino);
 
             //viweholderimin tuttuğu viewe onclick ekledim
             itemView.setOnClickListener(this);
         }
 
-        public void setData(SecilenItemler selectedItem, int position) {
+        public void setData(ZimmetAlActivity.GelenRequestModel selectedItem, int position) {
             this.mnotv.setText(String.valueOf(selectedItem.mno));
             this.modeltv.setText(String.valueOf(selectedItem.model));
-            this.nottv.setText(String.valueOf(selectedItem.not));
-            this.isimtv.setText(String.valueOf(selectedItem.isim));
+            this.nottv.setText(String.valueOf(selectedItem.zimmet_not));
+            this.isimtv.setText(String.valueOf(selectedItem.zimmetalan));
             this.kategoritv.setText(String.valueOf(selectedItem.kategori));
-            this.tarihtv.setText(String.valueOf(selectedItem.tarih));
+            this.tarihtv.setText(String.valueOf(selectedItem.zimmet_alinma_tarih));
+            this.malzemecinotv.setText(String.valueOf(selectedItem.malzemecino));
         }
 
         @Override
@@ -128,12 +112,13 @@ public class MyRecyclerAdapter_zimmetAl extends RecyclerView.Adapter <MyRecycler
                 //item listesinden o itemi seçilen itemlere ekle
                 String mno = String.valueOf(itemList.get(currentAdapterPos).mno);
                 String model = String.valueOf(itemList.get(currentAdapterPos).model);
-                String not = String.valueOf(itemList.get(currentAdapterPos).not);
+                String not = String.valueOf(itemList.get(currentAdapterPos).zimmet_not);
                 String kategori = String.valueOf(itemList.get(currentAdapterPos).kategori);
-                String isim = String.valueOf(itemList.get(currentAdapterPos).isim);
-                String tarih = String.valueOf(itemList.get(currentAdapterPos).tarih);
+                String isim = String.valueOf(itemList.get(currentAdapterPos).zimmetalan);
+                String tarih = String.valueOf(itemList.get(currentAdapterPos).zimmet_alinma_tarih);
+                String malzemeciNo = String.valueOf(itemList.get(currentAdapterPos).malzemecino);
 
-                secilen.add(new MyRecyclerAdapter_zimmetAl.SecilenItemler(isim, mno, model, kategori, not, tarih));
+                secilen.add(new ZimmetAlActivity.GelenRequestModel(mno, isim, kategori, model, tarih, not, malzemeciNo));
 
             } else {
                 //seçilmiş ise seçimini kaldır ve arka planı düzel

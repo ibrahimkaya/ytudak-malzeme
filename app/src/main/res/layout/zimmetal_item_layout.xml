@@ -41,6 +41,17 @@
         android:padding="16dp"
         app:layout_constraintStart_toEndOf="@+id/zal_kategori"
         app:layout_constraintLeft_toRightOf="@id/zal_kategori"
+        app:layout_constraintRight_toLeftOf="@id/zal_malzemencino"
+        />
+    <TextView
+        android:id="@+id/zal_malzemencino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/malzemeci_no"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
+        app:layout_constraintStart_toEndOf="@+id/zal_model"
+        app:layout_constraintLeft_toRightOf="@id/zal_kategori"
         app:layout_constraintRight_toRightOf="parent"
         />
     <TextView
@@ -61,7 +72,15 @@
         app:layout_constraintLeft_toRightOf="@id/zal_tarih"
         app:layout_constraintTop_toBottomOf="@id/zal_adi"
         />
-    
+    <TextView
+        android:id="@+id/zal_zimmet_mno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mno"
+        android:padding="16dp"
+        app:layout_constraintLeft_toRightOf="@id/zal_zimmet_not"
+        app:layout_constraintTop_toBottomOf="@id/zal_adi"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
