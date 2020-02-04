@@ -39,7 +39,7 @@ public class ZimmetAlOnayActivity extends AppCompatActivity {
         list = findViewById(R.id.zimmetal_secilen_listview);
 
         Intent intent = getIntent();
-        array = intent.getStringArrayListExtra("zimmet_al_onay_array");
+        array = intent.getStringArrayListExtra("zimmetal_onay");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, array);
         list.setAdapter(adapter);
